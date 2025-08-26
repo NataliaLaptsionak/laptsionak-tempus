@@ -1,12 +1,23 @@
 package by.tempus;
 
 import org.junit.jupiter.api.AfterEach;
+import org.openqa.selenium.JavascriptExecutor;
 
 public class BaseTest {
-    protected org.openqa.selenium.WebDriver driver;
 
     @AfterEach
     public void tearDown() {
-        WebDriver.quit();
+
+        org.openqa.selenium.WebDriver currentDriver = WebDriver.getInstance();
+
+        if (currentDriver != null) {
+            JavascriptExecutor js = (JavascriptExecutor) currentDriver;
+            js.executeScript("window.localStorage.clear();");
+            js.executeScript("window.sessionStorage.clear();");
+
+            currentDriver.manage().deleteAllCookies();
+
+            WebDriver.quit();
+        }
     }
 }

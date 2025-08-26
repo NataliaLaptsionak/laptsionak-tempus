@@ -1,11 +1,9 @@
 package by.tempus;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
 
 public class WebDriver {
@@ -18,6 +16,10 @@ public class WebDriver {
             driver.manage().window().maximize();
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(4));
         }
+        return driver;
+    }
+
+    public static org.openqa.selenium.WebDriver getInstance() {
         return driver;
     }
 
@@ -38,9 +40,15 @@ public class WebDriver {
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath))).click();
     }
 
+    public static void clickElementByJs(String xpath) {
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+    }
+
     public static void sendkeysToElement(String xpath, String value) {
         WebElement element = findElement(xpath);
-        element.clear(); // Очищаем поле перед вводом
+        element.clear();
         element.sendKeys(value);
     }
 
