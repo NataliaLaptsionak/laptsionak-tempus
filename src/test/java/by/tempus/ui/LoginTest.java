@@ -1,5 +1,7 @@
-package by.tempus;
+package by.tempus.ui;
 
+import by.tempus.HomePage;
+import by.tempus.LoginForm;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
