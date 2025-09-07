@@ -1,5 +1,7 @@
 package by.tempus;
 
+import by.tempus.webDriver.WebDriver;
+
 public class SearchPage {
     private final String INPUT_SEARCH = "//input[@id='title-search-input']";
     private final String BUTTON_SEARCH = "//input[@id='title-search-input']/following-sibling::button";

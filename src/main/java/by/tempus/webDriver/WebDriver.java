@@ -1,4 +1,4 @@
-package by.tempus;
+package by.tempus.webDriver;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;

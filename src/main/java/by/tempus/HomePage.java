@@ -1,5 +1,7 @@
 package by.tempus;
 
+import by.tempus.webDriver.WebDriver;
+
 public class HomePage {
     private String URL = "https://tempus.by/";
     private String BUTTON_LOGIN = "//button[contains(@class, 'icons__action--account') and contains(@class, 'j-sidePanel')]";

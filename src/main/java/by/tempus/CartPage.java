@@ -1,5 +1,6 @@
 package by.tempus;
 
+import by.tempus.webDriver.WebDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -27,7 +28,8 @@ public class CartPage {
     private final String CITY_MINSK_TAG = "//a[@class='quick-location-tag' and contains(., 'Минск')]";
     private final String PAYMENT_CASH_RADIO = "//span[@class='order-variant-box__content' and contains(., 'Наличные')]";
     private final String PLACE_ORDER_BUTTON = "//a[contains(@class, 'order-page__final-button')]";
-    private final String ORDER_ERROR_MESSAGE = "//font[normalize-space()='Некорректный E-Mail']";
+    private final String INCORRECT_EMAIL_CART_ERROR_MESSAGE = "//font[normalize-space()='Некорректный E-Mail']";
+    private final String EMPTY_PHONE_CART_ERROR_MESSAGE = "//font[normalize-space()='\"Телефон\": обязательно для заполнения']";
 
     public CartPage clickCatalogButton() {
         WebDriver.clickElement(HEADER_CATALOG_BUTTON);
@@ -117,7 +119,11 @@ public class CartPage {
         WebDriver.clickElement(PLACE_ORDER_BUTTON);
     }
 
-    public String getOrderErrorMessage() {
-        return WebDriver.getTextFromElement(ORDER_ERROR_MESSAGE);
+    public String getIncorrectEmailErrorMessage() {
+        return WebDriver.getTextFromElement(INCORRECT_EMAIL_CART_ERROR_MESSAGE);
+    }
+
+    public String getEmptyPhoneErrorMessage() {
+        return WebDriver.getTextFromElement(EMPTY_PHONE_CART_ERROR_MESSAGE);
     }
 }

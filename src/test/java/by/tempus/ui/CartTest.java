@@ -2,7 +2,7 @@ package by.tempus.ui;
 
 import by.tempus.CartPage;
 import by.tempus.HomePage;
-import by.tempus.WebDriver;
+import by.tempus.webDriver.WebDriver;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -103,12 +103,33 @@ public class CartTest extends BaseTest {
 
         String expectedMessage = "Некорректный E-Mail";
 
-        Assertions.assertEquals(expectedMessage, cartPage.getOrderErrorMessage(),
+        Assertions.assertEquals(expectedMessage, cartPage.getIncorrectEmailErrorMessage(),
                 "Сообщение об ошибке не появилось или его текст неверный.");
     }
 
     @Test
-    @DisplayName("Сценарий 6: Проверка перехода в каталог из пустой корзины")
+    @DisplayName("Сценарий 6: Проверка ошибки при незаполнении номера телефона")
+    public void verifyErrorOnCheckoutWithEmptyPhoneNumberTest() {
+        CartPage cartPage = new CartPage();
+
+        cartPage.clickCatalogButton();
+        cartPage.clickWomenCategory();
+        cartPage.selectFirstMichaelKorsWatch();
+        cartPage.clickAddToCart();
+        cartPage.openCart();
+
+        cartPage.fillCheckoutForm("Тестов Тест Тестович", "test8@gmail.com", "");
+        cartPage.selectCityMinsk();
+        cartPage.clickPlaceOrderButton();
+
+        String expectedMessage = "\"Телефон\": обязательно для заполнения";
+
+        Assertions.assertEquals(expectedMessage, cartPage.getEmptyPhoneErrorMessage(),
+                "Сообщение об ошибке не появилось или его текст неверный.");
+    }
+
+    @Test
+    @DisplayName("Сценарий 7: Проверка перехода в каталог из пустой корзины")
     public void navigateToCatalogFromEmptyCartTest() {
         CartPage cartPage = new CartPage();
 

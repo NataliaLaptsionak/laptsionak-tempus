@@ -1,6 +1,6 @@
 package by.tempus.ui;
 
-import by.tempus.WebDriver;
+import by.tempus.webDriver.WebDriver;
 import org.junit.jupiter.api.AfterEach;
 import org.openqa.selenium.JavascriptExecutor;
 
