@@ -1,85 +1,80 @@
 package by.tempus.api;
 
+import by.tempus.api.login.LoginService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static io.restassured.RestAssured.given;
-
-@DisplayName("Login form API tests. API Тесты формы логина")
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LoginTest {
-    @Test
-    @DisplayName("Verify login with invalid credentials (API response).Неверные учетные данные или пользователь деактивирован\\заблокирован")
-    public void testLoginWithInvalidCredentials() {
-        String URL = "https://tempus.by/bitrix/services/main/ajax.php";
 
-        given()
-                .formParam("email", "test5@gmail.com")
-                .formParam("password", "34567")
-                .queryParam("action", "imedia:main.api.Auth.loginByEmail")
-                .when()
-                .post(URL)
-                .then()
-                .log().all();
+    private LoginService loginService;
+
+    @BeforeEach
+    public void setup() {
+        loginService = new LoginService();
+    }
+
+    @Test
+    @DisplayName("Verify login with invalid credentials (API response). Неверные учетные данные или пользователь деактивирован\\заблокирован")
+    public void testLoginWithInvalidCredentials() {
+        loginService.doRequest("incorrect@mail.ru", "wrongpassword");
+        assertAll(
+                () -> assertEquals(200, loginService.getStatusCode(), "Expected status code is 200"),
+                () -> assertEquals(ExpectedMessages.INVALID_CREDENTIALS, loginService.getErrorMessage(), "Incorrect error message")
+        );
     }
 
     @Test
     @DisplayName("Verify login with empty email (API response). Не указан Email")
     public void testLoginWithEmptyEmail() {
-        String URL = "https://tempus.by/bitrix/services/main/ajax.php";
-
-        given()
-                .formParam("email", "")
-                .formParam("password", "34567")
-                .queryParam("action", "imedia:main.api.Auth.loginByEmail")
-                .when()
-                .post(URL)
-                .then()
-                .log().all();
+        loginService.doRequest("", "34567");
+        assertAll(
+                () -> assertEquals(200, loginService.getStatusCode(), "Expected status code is 200"),
+                () -> assertEquals(ExpectedMessages.EMPTY_EMAIL, loginService.getErrorMessage(), "Incorrect error message for empty email")
+        );
     }
 
     @Test
     @DisplayName("Verify login with empty password (API response). Не указан Пароль")
     public void testLoginWithEmptyPassword() {
-        String URL = "https://tempus.by/bitrix/services/main/ajax.php";
-
-        given()
-                .formParam("email", "test5@gmail.com")
-                .formParam("password", "")
-                .queryParam("action", "imedia:main.api.Auth.loginByEmail")
-                .when()
-                .post(URL)
-                .then()
-                .log().all();
+        loginService.doRequest("test5@gmail.com", "");
+        assertAll(
+                () -> assertEquals(200, loginService.getStatusCode(), "Expected status code is 200"),
+                () -> assertEquals(ExpectedMessages.EMPTY_PASSWORD, loginService.getErrorMessage(), "Incorrect error message for empty password")
+        );
     }
 
     @Test
-    @DisplayName("Verify login with incorrect email (API response). Некорректный email")
+    @DisplayName("Verify login with incorrect email format (API response). Некорректный Email")
     public void testLoginWithIncorrectEmailFormat() {
-        String URL = "https://tempus.by/bitrix/services/main/ajax.php";
-
-        given()
-                .formParam("email", "@gmail.com")
-                .formParam("password", "34567")
-                .queryParam("action", "imedia:main.api.Auth.loginByEmail")
-                .when()
-                .post(URL)
-                .then()
-                .log().all();
+        loginService.doRequest("invalid-email", "34567");
+        assertAll(
+                () -> assertEquals(200, loginService.getStatusCode(), "Expected status code is 200"),
+                () -> assertEquals(ExpectedMessages.INVALID_EMAIL_FORMAT, loginService.getErrorMessage(), "Incorrect error message for invalid email format")
+        );
     }
 
     @Test
     @DisplayName("Verify login with empty email and password (API response). Не указан Email")
     public void testLoginWithEmptyEmailAndPassword() {
-        String URL = "https://tempus.by/bitrix/services/main/ajax.php";
-
-        given()
-                .formParam("email", "")
-                .formParam("password", "")
-                .queryParam("action", "imedia:main.api.Auth.loginByEmail")
-                .when()
-                .post(URL)
-                .then()
-                .log().all();
+        loginService.doRequest("", "");
+        assertAll(
+                () -> assertEquals(200, loginService.getStatusCode(), "Expected status code is 200"),
+                () -> assertEquals(ExpectedMessages.EMPTY_EMAIL, loginService.getErrorMessage(), "Incorrect error message for empty email and password")
+        );
     }
+
+//    @Test
+//    @DisplayName("Verify successful login (API response). Успешная авторизация")
+//    public void testSuccessfulLogin() {
+//
+//        loginService.doRequest("зарегиться", "зарегиться");
+//        assertAll(
+//                () -> assertEquals(200, loginService.getStatusCode(), "Expected status code is 200 for successful login"),
+//                () -> assertEquals(null, loginService.getErrorMessage(), "Error message should be null for successful login")
+//        );
+//    }
 }
