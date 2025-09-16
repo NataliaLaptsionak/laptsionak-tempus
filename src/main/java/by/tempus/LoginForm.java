@@ -13,15 +13,11 @@ public class LoginForm {
     private final String LOGIN_EMAIL_ERROR = "//input[@name='email']/following-sibling::span[@class='form-input__error-message']";
     private final String LOGIN_PASSWORD_ERROR = "//input[@name='password']/following-sibling::span[@class='form-input__error-message']";
     private final String LOGIN_CREDENTIALS_ERROR = "//div[@class='success-popup__text']";
-
     private final String LABEL_EMAIL_TEXT = "//label[@class='form-input is-required is-email check-email']//span[@class='form-input__placeholder']";
     private final String LABEL_PASSWORD_TEXT = "//form[@class='form authorize__form js-validate-form']//label[@class='form-input is-required is-password']//span[@class='form-input__placeholder']";
     private final String BUTTON_RESTORE_PASSWORD = "//button[@class='form__action j-tabBtnHandle']";
     private final String RESTORE_PASSWORD_FORM_TITLE_TEXT = "//div[@class='form__recover' and normalize-space()='Для восстановления пароля, введите Email']";
-
     private final String BUTTON_REGISTRATION_FORM = "//li[contains(@class, '')]//button[text()='Регистрация']";
-    private final String HEAD_REGISTRATION_FORM_TITLE = "//li[contains(@class, 'is-active')]//button[text()='Регистрация']";
-
     private final String BUTTON_SUBMIT_RESTORE = "//button[@class='button is-primary' and normalize-space()='Восстановить']";
     private final String RESTORE_PASSWORD_ERROR = "//div[@class='success-popup__text']";
 

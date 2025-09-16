@@ -4,7 +4,6 @@ import by.tempus.api.login.LoginService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -58,15 +57,16 @@ public class LoginTest {
     }
 
     @Test
-    @DisplayName("Verify login with empty email and password (API response). Не указан Email")
+    @DisplayName("Verify login with empty email and password (API response). Не указан Email.")
     public void testLoginWithEmptyEmailAndPassword() {
         loginService.doRequest("", "");
         assertAll(
                 () -> assertEquals(200, loginService.getStatusCode(), "Expected status code is 200"),
-                () -> assertEquals(ExpectedMessages.EMPTY_EMAIL, loginService.getErrorMessage(), "Incorrect error message for empty email and password")
+                () -> assertEquals(ExpectedMessages.EMPTY_EMAIL_AND_PASSWORD, loginService.getErrorMessage(), "Incorrect error message for empty email and password")
         );
     }
 
+    //еще думаю региться или нет или оставить только негативные тесты
 //    @Test
 //    @DisplayName("Verify successful login (API response). Успешная авторизация")
 //    public void testSuccessfulLogin() {

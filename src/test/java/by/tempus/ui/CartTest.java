@@ -16,7 +16,7 @@ public class CartTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("Сценарий 1: Проверка отображения пустой корзины")
+    @DisplayName("Проверка отображения пустой корзины")
     public void viewEmptyCartTest() {
         CartPage cartPage = new CartPage();
         cartPage.openCart();
@@ -27,7 +27,7 @@ public class CartTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("Сценарий 2: Проверка добавления нескольких разных товаров в корзину")
+    @DisplayName("Проверка добавления нескольких разных товаров в корзину")
     public void addMultipleItemsToCartTest() {
         CartPage cartPage = new CartPage();
 
@@ -48,7 +48,7 @@ public class CartTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("Сценарий 3: Проверка увеличения и уменьшения количества товара")
+    @DisplayName("Проверка увеличения и уменьшения количества товара")
     public void increaseAndDecreaseItemQuantityTest() throws InterruptedException {
         CartPage cartPage = new CartPage();
 
@@ -70,7 +70,7 @@ public class CartTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("Сценарий 4: Проверка полной очистки корзины")
+    @DisplayName("Проверка полной очистки корзины")
     public void clearCartTest() {
         CartPage cartPage = new CartPage();
 
@@ -87,7 +87,7 @@ public class CartTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("Сценарий 5: Проверка ошибки при вводе невалидного E-mail")
+    @DisplayName("Проверка ошибки при вводе невалидного E-mail")
     public void verifyErrorOnCheckoutWithInvalidEmailTest() {
         CartPage cartPage = new CartPage();
 
@@ -108,7 +108,7 @@ public class CartTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("Сценарий 6: Проверка ошибки при незаполнении номера телефона")
+    @DisplayName("Проверка ошибки при незаполнении номера телефона")
     public void verifyErrorOnCheckoutWithEmptyPhoneNumberTest() {
         CartPage cartPage = new CartPage();
 
@@ -129,7 +129,7 @@ public class CartTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("Сценарий 7: Проверка перехода в каталог из пустой корзины")
+    @DisplayName("Проверка перехода в каталог из пустой корзины")
     public void navigateToCatalogFromEmptyCartTest() {
         CartPage cartPage = new CartPage();
 

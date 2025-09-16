@@ -1,7 +1,5 @@
 package by.tempus.api.registration;
-
 import io.restassured.response.Response;
-
 import java.util.HashMap;
 import java.util.Map;
 

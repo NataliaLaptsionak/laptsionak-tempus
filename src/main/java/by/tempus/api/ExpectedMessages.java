@@ -8,7 +8,6 @@ public class ExpectedMessages {
     public static final String EMPTY_EMAIL_AND_PASSWORD = "Не указан Email";
 
     public static final String EMPTY_FULL_NAME = "Не указано ФИО";
-    public static final String INVALID_EMAIL = "Некорректный email";
     public static final String INVALID_PHONE_NUMBER = "Некорректный номер телефона";
     public static final String EMPTY_PHONE = "Не указан Номер телефона";
     public static final String INCORRECT_REPEAT_PASSWORD = "Некорректное подтверждение пароля";

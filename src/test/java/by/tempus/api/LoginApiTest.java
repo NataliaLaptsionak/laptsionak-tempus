@@ -1,3 +1,5 @@
+
+// На основании LoginApiTest создавался LoginTest (позже класс будет удален)
 package by.tempus.api;
 
 import by.tempus.api.login.LoginService;
