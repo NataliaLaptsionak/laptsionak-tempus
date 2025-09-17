@@ -1,13 +1,10 @@
 package by.tempus.ui;
 
-import by.tempus.HomePage;
-import by.tempus.LoginForm;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-@DisplayName("Тесты формы логин")
 public class LoginTest extends BaseTest {
 
     @BeforeEach
@@ -18,15 +15,15 @@ public class LoginTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("Проверка заголовка на форме логин")
-    public void test1() {
+    @DisplayName("Verification of the login form title. Проверка заголовка на форме логин")
+    public void verifyLoginFormTitle() {
         LoginForm loginForm = new LoginForm();
         Assertions.assertEquals("Вход", loginForm.getHeadFormTitleText());
     }
 
     @Test
-    @DisplayName("Проверка наличия элементов на форме логин")
-    public void test2() {
+    @DisplayName("Verification of fields presence on the login form. Проверка наличия элементов на форме логин")
+    public void verifyLoginFormFields() {
         LoginForm loginForm = new LoginForm();
         Assertions.assertEquals("Вход", loginForm.getHeadFormTitleText());
         Assertions.assertEquals("Email", loginForm.getLabelEmailText());
@@ -37,8 +34,8 @@ public class LoginTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("Проверка сообщений об ошибках для обязательных полей при пустых значениях")
-    public void test3() {
+    @DisplayName("Verification of error messages for empty required fields. Проверка сообщений об ошибках для обязательных полей при пустых значениях")
+    public void verifyErrorMessagesForEmptyFields() {
         LoginForm loginForm = new LoginForm();
         loginForm.clickButtonLogin();
 
@@ -47,8 +44,8 @@ public class LoginTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("Проверка сообщения об ошибке для обязательного поля 'Пароль' при пустом значении")
-    public void test4() {
+    @DisplayName("Verification of error message for empty 'Password' field. Проверка сообщения об ошибке для обязательного поля 'Пароль' при пустом значении")
+    public void verifyErrorMessageForEmptyPasswordField() {
         LoginForm loginForm = new LoginForm();
         loginForm.sendKeysLogin("test.login@gmail.com");
         loginForm.clickButtonLogin();
@@ -57,8 +54,8 @@ public class LoginTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("Проверка сообщения об ошибке для обязательного поля 'Email' при пустом значении")
-    public void test5() {
+    @DisplayName("Verification of error message for empty 'Email' field. Проверка сообщения об ошибке для обязательного поля 'Email' при пустом значении")
+    public void verifyErrorMessageForEmptyEmailField() {
         LoginForm loginForm = new LoginForm();
         loginForm.sendKeysPassword("1111qwerty");
         loginForm.clickButtonLogin();
@@ -67,7 +64,7 @@ public class LoginTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("Проверка сообщения об ошибке для невалидного формата Email")
+    @DisplayName("Verification of error message for invalid Email format. Проверка сообщения об ошибке для невалидного формата Email")
     public void invalidEmailFormatTest() {
         LoginForm loginForm = new LoginForm();
         loginForm.fillLoginForm("testemail.com", "some_password");
@@ -78,7 +75,7 @@ public class LoginTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("Проверка сообщения об ошибке при вводе незарегистрированных креденшиалз")
+    @DisplayName("Verification of error message for unregistered credentials. Проверка сообщения об ошибке при вводе незарегистрированных креденшиалз")
     public void InvalidCredentialsTest() {
         LoginForm loginForm = new LoginForm();
         loginForm.fillLoginForm("test@email.com", "some_password");
@@ -89,7 +86,7 @@ public class LoginTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("Проверка перехода в форму восстановления пароля")
+    @DisplayName("Verification of redirection to password recovery form. Проверка перехода в форму восстановления пароля")
     public void RestorePasswordFormRedirectionTest() {
         LoginForm loginForm = new LoginForm();
         loginForm.clickButtonRestorePassword();
@@ -97,8 +94,8 @@ public class LoginTest extends BaseTest {
         Assertions.assertEquals("Для восстановления пароля, введите Email", loginForm.getRestorePasswordFormTitleText());
     }
 
-    @Test //
-    @DisplayName("Проверка перехода в форму регистрации")
+    @Test
+    @DisplayName("Verification of redirection to registration form. Проверка перехода в форму регистрации")
     public void RegistrationFormRedirectionTest() {
         LoginForm loginForm = new LoginForm();
         loginForm.clickButtonRegistrationForm();

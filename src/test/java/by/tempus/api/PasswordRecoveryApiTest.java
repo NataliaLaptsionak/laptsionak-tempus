@@ -28,7 +28,7 @@ public class PasswordRecoveryApiTest {
         String URL = "https://tempus.by/bitrix/services/main/ajax.php";
 
         given()
-                .formParam("email", "@gmail.com")
+                .formParam("email", "invalid-email")
                 .queryParam("action", "imedia:main.api.Auth.restore")
                 .when()
                 .post(URL)
@@ -42,7 +42,7 @@ public class PasswordRecoveryApiTest {
         String URL = "https://tempus.by/bitrix/services/main/ajax.php";
 
         given()
-                .formParam("email", "test8@gmail.com")
+                .formParam("email", "nonexistent@mail.ru")
                 .queryParam("action", "imedia:main.api.Auth.restore")
                 .when()
                 .post(URL)

@@ -1,7 +1,5 @@
 package by.tempus.ui;
 
-import by.tempus.HomePage;
-import by.tempus.SearchPage;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -15,7 +13,7 @@ public class SearchTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("Проверка поиска по полному названию существующего товара")
+    @DisplayName("Checking search by full name of existing product. Проверка поиска по полному названию существующего товара")
     public void validFullSearchTest() {
         SearchPage searchPage = new SearchPage();
         String searchQuery = "Наручные часы Emporio Armani Sports AR2460";
@@ -26,7 +24,7 @@ public class SearchTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("Проверка, что результаты поиска по частичному названию релевантны")
+    @DisplayName("Checking that search results are partially relevant to the partial name. Проверка, что результаты поиска по частичному названию релевантны")
     public void validPartialSearchTest() {
         SearchPage searchPage = new SearchPage();
         String searchQuery = "armani";
@@ -37,7 +35,7 @@ public class SearchTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("Проверка сообщения при поиске по несуществующему запросу")
+    @DisplayName("Checking message when searching for a non-existent query. Проверка сообщения при поиске по несуществующему запросу")
     public void invalidSearchTest() {
         SearchPage searchPage = new SearchPage();
         searchPage.searchFor("someinvalidquerry12345");

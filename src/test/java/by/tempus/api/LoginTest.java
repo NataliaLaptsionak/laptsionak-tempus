@@ -49,7 +49,7 @@ public class LoginTest {
     @Test
     @DisplayName("Verify login with incorrect email format (API response). Некорректный Email")
     public void testLoginWithIncorrectEmailFormat() {
-        loginService.doRequest("invalid-email", "34567");
+        loginService.doRequest("@gmail.com", "34567");
         assertAll(
                 () -> assertEquals(200, loginService.getStatusCode(), "Expected status code is 200"),
                 () -> assertEquals(ExpectedMessages.INVALID_EMAIL_FORMAT, loginService.getErrorMessage(), "Incorrect error message for invalid email format")

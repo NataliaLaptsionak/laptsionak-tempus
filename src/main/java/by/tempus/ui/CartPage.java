@@ -1,4 +1,4 @@
-package by.tempus;
+package by.tempus.ui;
 
 import by.tempus.webDriver.WebDriver;
 import org.openqa.selenium.By;

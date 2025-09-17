@@ -17,7 +17,7 @@ public class LoginApiTest {
         String URL = "https://tempus.by/bitrix/services/main/ajax.php";
 
         given()
-                .formParams(LoginService.getFormParams("mail1@mail.ru", "23456"))
+                .formParams(LoginService.getFormParams("incorrect@mail.ru", "wrongpassword"))
                 .queryParam("action", "imedia:main.api.Auth.loginByEmail")
                 .when()
                 .post(URL)
@@ -56,7 +56,7 @@ public class LoginApiTest {
     }
 
     @Test
-    @DisplayName("Verify login with incorrect email (API response). Некорректный email")
+    @DisplayName("Verify login with incorrect email format (API response). Некорректный email")
     public void testLoginWithIncorrectEmailFormat() {
         String URL = "https://tempus.by/bitrix/services/main/ajax.php";
 
