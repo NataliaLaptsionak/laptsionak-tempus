@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 
 public class LoginForm {
 
-    private final String HEAD_FORM_TITLE = "//li[contains(@class, 'is-active')]//button[text()='Вход']";
+    private final String LOGIN_FORM_TITLE = "//li[contains(@class, 'is-active')]//button[text()='Вход']";
     private final String INPUT_LOGIN_EMAIL = "//input[@name='email']";
     private final String INPUT_LOGIN_PASSWORD = "//input[@name='password']";
     private final String BUTTON_LOGIN = "//button[@class='button is-primary' and normalize-space()='Войти в аккаунт']";
@@ -15,17 +15,17 @@ public class LoginForm {
     private final String LOGIN_CREDENTIALS_ERROR = "//div[@class='success-popup__text']";
     private final String LABEL_EMAIL_TEXT = "//label[@class='form-input is-required is-email check-email']//span[@class='form-input__placeholder']";
     private final String LABEL_PASSWORD_TEXT = "//form[@class='form authorize__form js-validate-form']//label[@class='form-input is-required is-password']//span[@class='form-input__placeholder']";
-    private final String BUTTON_RESTORE_PASSWORD = "//button[@class='form__action j-tabBtnHandle']";
-    private final String RESTORE_PASSWORD_FORM_TITLE_TEXT = "//div[@class='form__recover' and normalize-space()='Для восстановления пароля, введите Email']";
+    private final String LINK_RESTORE_PASSWORD = "//button[@class='form__action j-tabBtnHandle']";
+   private final String RESTORE_PASSWORD_FORM_TITLE_TEXT = "//div[@class='form__recover' and normalize-space()='Для восстановления пароля, введите Email']";
     private final String BUTTON_REGISTRATION_FORM = "//li[contains(@class, '')]//button[text()='Регистрация']";
-    private final String BUTTON_SUBMIT_RESTORE = "//button[@class='button is-primary' and normalize-space()='Восстановить']";
-    private final String RESTORE_PASSWORD_ERROR = "//div[@class='success-popup__text']";
+//    private final String BUTTON_SUBMIT_RESTORE = "//button[@class='button is-primary' and normalize-space()='Восстановить']";
+//    private final String RESTORE_PASSWORD_ERROR = "//div[@class='success-popup__text']";
 
     public LoginForm() {
     }
 
-    public String getHeadFormTitleText() {
-        return WebDriver.getTextFromElement(HEAD_FORM_TITLE);
+    public String getLoginFormTitleText() {
+        return WebDriver.getTextFromElement(LOGIN_FORM_TITLE);
     }
 
     public String getButtonRegistrationFormText() {
@@ -45,7 +45,10 @@ public class LoginForm {
     }
 
     public String getButtonRestorePasswordText() {
-        return WebDriver.getTextFromElement(BUTTON_RESTORE_PASSWORD);
+        return WebDriver.getTextFromElement(LINK_RESTORE_PASSWORD);
+    }
+    public void clickLinkRestorePassword() {
+        WebDriver.clickElement(LINK_RESTORE_PASSWORD);
     }
 
     public void sendKeysLogin(String login) {
@@ -89,18 +92,18 @@ public class LoginForm {
     }
 
     public void clickButtonRestorePassword() {
-        WebDriver.clickElement(BUTTON_RESTORE_PASSWORD);
+        WebDriver.clickElement(LINK_RESTORE_PASSWORD);
     }
 
     public String getRestorePasswordFormTitleText() {
         return WebDriver.getTextFromElement(RESTORE_PASSWORD_FORM_TITLE_TEXT);
     }
 
-    public void clickButtonSubmitRestore() {
-        WebDriver.clickElement(BUTTON_SUBMIT_RESTORE);
-    }
+//    public void clickButtonSubmitRestore() {
+//        WebDriver.clickElement(BUTTON_SUBMIT_RESTORE);
+//    }
 
-    public String getRestorePasswordError() {
-        return WebDriver.getTextFromElement(RESTORE_PASSWORD_ERROR);
-    }
+//    public String getRestorePasswordError() {
+//        return WebDriver.getTextFromElement(RESTORE_PASSWORD_ERROR);
+//    }
 }

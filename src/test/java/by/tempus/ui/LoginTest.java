@@ -18,14 +18,14 @@ public class LoginTest extends BaseTest {
     @DisplayName("Verification of the login form title. Проверка заголовка на форме логин")
     public void verifyLoginFormTitle() {
         LoginForm loginForm = new LoginForm();
-        Assertions.assertEquals("Вход", loginForm.getHeadFormTitleText());
+        Assertions.assertEquals("Вход", loginForm.getLoginFormTitleText());
     }
 
     @Test
     @DisplayName("Verification of fields presence on the login form. Проверка наличия элементов на форме логин")
     public void verifyLoginFormFields() {
         LoginForm loginForm = new LoginForm();
-        Assertions.assertEquals("Вход", loginForm.getHeadFormTitleText());
+        Assertions.assertEquals("Вход", loginForm.getLoginFormTitleText());
         Assertions.assertEquals("Email", loginForm.getLabelEmailText());
         Assertions.assertEquals("Пароль", loginForm.getLabelPasswordText());
         Assertions.assertEquals("Восстановить пароль", loginForm.getButtonRestorePasswordText());

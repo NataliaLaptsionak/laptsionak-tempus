@@ -19,7 +19,7 @@ public class RegistrationTest {
     @Test
     @DisplayName("Verify user registration with empty full name (API response). Не указано ФИО")
     public void testUserRegistrationWithEmptyFullName() {
-        registrationService.doRegistrationRequest("", "test@gmail.com", "+375(29)999-99-99", "123456", "123456");
+        registrationService.doRegistrationRequest("", "test11@gmail.com", "+375(29)999-99-99", "123456", "123456");
         assertAll(
                 () -> assertEquals(200, registrationService.getStatusCode(), "Expected status code is 200"),
                 () -> assertEquals(ExpectedMessages.EMPTY_FULL_NAME, registrationService.getErrorMessage(), "Incorrect error message for empty full name")
@@ -29,7 +29,6 @@ public class RegistrationTest {
     @Test
     @DisplayName("Verify registration with existing email (API response). Указанный email используется другим пользователем")
     public void testUserRegistrationWithExistingEmail() {
-        // Предполагаем, что этот email уже зарегистрирован
         registrationService.doRegistrationRequest("Борщевская Василиса Васильевна", "test@gmail.com", "+375(29)999-99-99", "123456", "123456");
         assertAll(
                 () -> assertEquals(200, registrationService.getStatusCode(), "Expected status code is 200"),
@@ -60,7 +59,6 @@ public class RegistrationTest {
     @Test
     @DisplayName("Verify user registration with existing phone number (API response). Пользователь с номером телефона +375299999999 уже существует")
     public void testUserRegistrationWithExistingPhone() {
-        // Предполагаем, что этот номер телефона уже зарегистрирован
         registrationService.doRegistrationRequest("q", "test1@gmail.com", "+375299999999", "11111", "11111");
         assertAll(
                 () -> assertEquals(200, registrationService.getStatusCode(), "Expected status code is 200"),
@@ -71,7 +69,7 @@ public class RegistrationTest {
     @Test
     @DisplayName("Verify user registration with empty phone number (API response). Не указан Номер телефона")
     public void testUserRegistrationWithEmptyPhone() {
-        registrationService.doRegistrationRequest("q", "test1@gmail.com", "", "11111", "11111");
+        registrationService.doRegistrationRequest("q", "test12@gmail.com", "", "11111", "11111");
         assertAll(
                 () -> assertEquals(200, registrationService.getStatusCode(), "Expected status code is 200"),
                 () -> assertEquals(ExpectedMessages.EMPTY_PHONE, registrationService.getErrorMessage(), "Incorrect error message for empty phone number")
@@ -81,7 +79,7 @@ public class RegistrationTest {
     @Test
     @DisplayName("Verify user registration with empty password (API response). Не указан Пароль")
     public void testUserRegistrationWithEmptyPassword() {
-        registrationService.doRegistrationRequest("q", "test1@gmail.com", "+375(29)999-99-96", "", "11111");
+        registrationService.doRegistrationRequest("q", "test11@gmail.com", "+375(29)999-99-96", "", "11111");
         assertAll(
                 () -> assertEquals(200, registrationService.getStatusCode(), "Expected status code is 200"),
                 () -> assertEquals(ExpectedMessages.EMPTY_PASSWORD, registrationService.getErrorMessage(), "Incorrect error message for empty password")
@@ -91,7 +89,7 @@ public class RegistrationTest {
     @Test
     @DisplayName("Verify user registration with empty repeat password (API response). Некорректное подтверждение пароля")
     public void testUserRegistrationWithEmptyRepeatPassword() {
-        registrationService.doRegistrationRequest("Борщевская Василиса Васильевна", "test@gmail.com", "+375(29)999-99-77", "11111", "");
+        registrationService.doRegistrationRequest("Борщевская Василиса Васильевна", "test15@gmail.com", "+375(29)999-99-77", "11111", "");
         assertAll(
                 () -> assertEquals(200, registrationService.getStatusCode(), "Expected status code is 200"),
                 () -> assertEquals(ExpectedMessages.INCORRECT_REPEAT_PASSWORD, registrationService.getErrorMessage(), "Incorrect error message for empty repeat password")
