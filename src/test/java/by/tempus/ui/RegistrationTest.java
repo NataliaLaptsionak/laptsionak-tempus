@@ -50,10 +50,10 @@ public class RegistrationTest extends BaseTest {
         registrationForm.clickButtonRegistration();
 
         Assertions.assertEquals(RegistrationExpectedMessages.EMPTY_FULL_NAME_ERROR, registrationForm.getRegistrationFullNameError());
-        Assertions.assertEquals(RegistrationExpectedMessages.EMPTY_EMAIL, registrationForm.getRegistrationEmailError());
-        Assertions.assertEquals(RegistrationExpectedMessages.EMPTY_PHONE, registrationForm.getRegistrationPhoneError());
-        Assertions.assertEquals(RegistrationExpectedMessages.EMPTY_PASSWORD, registrationForm.getRegistrationPasswordError());
-        Assertions.assertEquals(RegistrationExpectedMessages.EMPTY_CHECHBOX_ERROR, registrationForm.getAgreementCheckboxError());
+        Assertions.assertEquals(RegistrationExpectedMessages.EMPTY_EMAIL_ERROR, registrationForm.getRegistrationEmailError());
+        Assertions.assertEquals(RegistrationExpectedMessages.EMPTY_PHONE_ERROR, registrationForm.getRegistrationPhoneError());
+        Assertions.assertEquals(RegistrationExpectedMessages.EMPTY_PASSWORD_ERROR, registrationForm.getRegistrationPasswordError());
+        Assertions.assertEquals(RegistrationExpectedMessages.EMPTY_CHECKBOX_ERROR , registrationForm.getAgreementCheckboxError());
     }
 
     @Test
@@ -68,7 +68,7 @@ public class RegistrationTest extends BaseTest {
         registrationForm.sendKeysRepeatPassword(DataGenerator.generateValidRepeatPassword());
         registrationForm.clickAgreementCheckbox();
         registrationForm.clickButtonRegistration();
-        Assertions.assertEquals(RegistrationExpectedMessages.EMPTY_FULL_NAME, registrationForm.getRegistrationFullNameError());
+        Assertions.assertEquals(RegistrationExpectedMessages.EMPTY_FULL_NAME_ERROR, registrationForm.getRegistrationFullNameError());
     }
 
     @Test
@@ -83,7 +83,7 @@ public class RegistrationTest extends BaseTest {
         registrationForm.sendKeysRepeatPassword(DataGenerator.generateValidRepeatPassword());
         registrationForm.clickAgreementCheckbox();
         registrationForm.clickButtonRegistration();
-        Assertions.assertEquals(RegistrationExpectedMessages.EMPTY_EMAIL, registrationForm.getRegistrationEmailError());
+        Assertions.assertEquals(RegistrationExpectedMessages.EMPTY_EMAIL_ERROR, registrationForm.getRegistrationEmailError());
     }
 
     @Test
@@ -98,7 +98,7 @@ public class RegistrationTest extends BaseTest {
         registrationForm.sendKeysRepeatPassword(DataGenerator.generateValidRepeatPassword());
         registrationForm.clickAgreementCheckbox();
         registrationForm.clickButtonRegistration();
-        Assertions.assertEquals(RegistrationExpectedMessages.EMPTY_PHONE, registrationForm.getRegistrationPhoneError());
+        Assertions.assertEquals(RegistrationExpectedMessages.EMPTY_PHONE_ERROR, registrationForm.getRegistrationPhoneError());
     }
 
     @Test
@@ -113,11 +113,11 @@ public class RegistrationTest extends BaseTest {
         registrationForm.sendKeysRepeatPassword(DataGenerator.generateValidRepeatPassword());
         registrationForm.clickAgreementCheckbox();
         registrationForm.clickButtonRegistration();
-        Assertions.assertEquals(RegistrationExpectedMessages.PASSWORD_LENGTH_RESTRICTION, registrationForm.getRegistrationPasswordError());
+        Assertions.assertEquals(RegistrationExpectedMessages.EMPTY_PASSWORD_ERROR, registrationForm.getRegistrationPasswordError());
     }
 
     @Test
-    @DisplayName("Verification of error message for empty 'Password' field. Проверка сообщения об ошибке для обязательного поля 'Повторить пароль' при пустом значении")
+    @DisplayName("Verification of error message for empty 'Repeat Password' field. Проверка сообщения об ошибке для обязательного поля 'Повторить пароль' при пустом значении")
     public void verifyErrorMessageForEmptyRepeatPassword() {
         RegistrationForm registrationForm = new RegistrationForm();
         registrationForm.clickTabRegistration();
@@ -128,7 +128,7 @@ public class RegistrationTest extends BaseTest {
         registrationForm.sendKeysPassword(DataGenerator.generateValidPassword());
         registrationForm.clickAgreementCheckbox();
         registrationForm.clickButtonRegistration();
-        Assertions.assertEquals(RegistrationExpectedMessages.PASSWORD_LENGTH_RESTRICTION, registrationForm.getRegistrationRepeatPasswordError());
+        Assertions.assertEquals(RegistrationExpectedMessages.EMPTY_REPEAT_PASSWORD_ERROR, registrationForm.getRegistrationRepeatPasswordError());
     }
 
     @Test

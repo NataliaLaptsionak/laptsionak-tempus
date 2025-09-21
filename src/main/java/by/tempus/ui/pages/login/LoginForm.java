@@ -98,4 +98,3 @@ public class LoginForm {
         return WebDriver.getTextFromElement(RESTORE_PASSWORD_FORM_TITLE_TEXT);
     }
 }
-

@@ -23,7 +23,7 @@ public class DataGenerator {
     }
 
     public static String generateInvalidBelarusianPhoneNumber() {
-        return "123"; // Too short
+        return "123";
     }
 
     public static String generateValidFullName() {
@@ -31,11 +31,11 @@ public class DataGenerator {
     }
 
     public static String generateValidPassword() {
-        return RandomStringUtils.randomAlphanumeric(10); // Min 6 chars
+        return RandomStringUtils.randomAlphanumeric(10);
     }
 
     public static String generateInvalidPassword() {
-        return "123"; // Too short
+        return "123";
     }
 
     public static String generateValidRepeatPassword() {
