@@ -73,16 +73,4 @@ public class LoginTest {
                 () -> assertEquals(ExpectedMessages.EMPTY_EMAIL_AND_PASSWORD, loginService.getErrorMessage(), "Incorrect error message for empty email and password")
         );
     }
-
-    //еще думаю региться или нет или оставить только негативные тесты
-//    @Test
-//    @DisplayName("Verify successful login (API response). Успешная авторизация")
-//    public void testSuccessfulLogin() {
-//
-//        loginService.doRequest("зарегиться", "зарегиться");
-//        assertAll(
-//                () -> assertEquals(200, loginService.getStatusCode(), "Expected status code is 200 for successful login"),
-//                () -> assertEquals(null, loginService.getErrorMessage(), "Error message should be null for successful login")
-//        );
-//    }
 }

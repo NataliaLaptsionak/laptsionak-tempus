@@ -13,7 +13,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class PasswordRecoveryTest {
     private PasswordRecoveryService passwordRecoveryService;
     private String validEmail;
-    private String validPassword;
     private String invalidEmail;
 
 
@@ -21,7 +20,6 @@ public class PasswordRecoveryTest {
     public void setUp() {
         passwordRecoveryService = new PasswordRecoveryService();
         validEmail = DataGenerator.generateValidEmail();
-        validPassword = DataGenerator.generateValidPassword();
         invalidEmail = DataGenerator.generateInvalidEmail();
     }
 
@@ -46,12 +44,12 @@ public class PasswordRecoveryTest {
     }
 
     @Test
-    @DisplayName("Verify restore password with incorrect email (non-existent email) (API response). Неверные учетные данные или пользователь деактивирован\\заблокирован\"")
+    @DisplayName("Verify restore password with unregistered email (API response). Неверные учетные данные или пользователь деактивирован\\заблокирован\"")
     public void testPasswordRecoveryNonExistentEmail() {
         passwordRecoveryService.doRequest(validEmail);
         assertAll(
                 () -> assertEquals(200, passwordRecoveryService.getStatusCode(), "Expected status code is 200"),
-                () -> assertEquals(ExpectedMessages.INVALID_CREDENTIALS, passwordRecoveryService.getErrorMessage(), "Incorrect error message for non-existent user")
+                () -> assertEquals(ExpectedMessages.UNREGISTERED_EMAIL, passwordRecoveryService.getErrorMessage(), "Incorrect error message for non-existent user")
         );
     }
 }
