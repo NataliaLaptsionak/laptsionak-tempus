@@ -16,13 +16,12 @@ public class LoginForm {
     private final String LABEL_EMAIL_TEXT = "//label[@class='form-input is-required is-email check-email']//span[@class='form-input__placeholder']";
     private final String LABEL_PASSWORD_TEXT = "//form[@class='form authorize__form js-validate-form']//label[@class='form-input is-required is-password']//span[@class='form-input__placeholder']";
     private final String LINK_RESTORE_PASSWORD = "//button[@class='form__action j-tabBtnHandle']";
-   private final String RESTORE_PASSWORD_FORM_TITLE_TEXT = "//div[@class='form__recover' and normalize-space()='Для восстановления пароля, введите Email']";
+    private final String RESTORE_PASSWORD_FORM_TITLE_TEXT = "//div[@class='form__recover' and normalize-space()='Для восстановления пароля, введите Email']";
     private final String BUTTON_REGISTRATION_FORM = "//li[contains(@class, '')]//button[text()='Регистрация']";
-//    private final String BUTTON_SUBMIT_RESTORE = "//button[@class='button is-primary' and normalize-space()='Восстановить']";
-//    private final String RESTORE_PASSWORD_ERROR = "//div[@class='success-popup__text']";
 
     public LoginForm() {
     }
+
     public String getLoginFormTitleText() {
         return WebDriver.getTextFromElement(LOGIN_FORM_TITLE);
     }
@@ -46,18 +45,23 @@ public class LoginForm {
     public String getButtonRestorePasswordText() {
         return WebDriver.getTextFromElement(LINK_RESTORE_PASSWORD);
     }
+
     public void clickLinkRestorePassword() {
         WebDriver.clickElement(LINK_RESTORE_PASSWORD);
     }
+
     public void sendKeysLogin(String login) {
         WebDriver.sendkeysToElement(INPUT_LOGIN_EMAIL, login);
     }
+
     public void sendKeysPassword(String password) {
         WebDriver.sendkeysToElement(INPUT_LOGIN_PASSWORD, password);
     }
+
     public void clickButtonLogin() {
         WebDriver.clickElement(BUTTON_LOGIN);
     }
+
     public String getLabelPasswordText() {
         return WebDriver.getTextFromElement(LABEL_PASSWORD_TEXT);
     }
@@ -79,6 +83,7 @@ public class LoginForm {
         WebElement emailField = WebDriver.findElement(INPUT_LOGIN_EMAIL);
         return (String) js.executeScript("return arguments[0].validationMessage;", emailField);
     }
+
     public void fillLoginForm(String login, String password) {
         sendKeysLogin(login);
         sendKeysPassword(password);
@@ -92,12 +97,5 @@ public class LoginForm {
     public String getRestorePasswordFormTitleText() {
         return WebDriver.getTextFromElement(RESTORE_PASSWORD_FORM_TITLE_TEXT);
     }
-
-//    public void clickButtonSubmitRestore() {
-//        WebDriver.clickElement(BUTTON_SUBMIT_RESTORE);
-//    }
-
-//    public String getRestorePasswordError() {
-//        return WebDriver.getTextFromElement(RESTORE_PASSWORD_ERROR);
-//    }
 }
+

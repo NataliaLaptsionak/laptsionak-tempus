@@ -1,9 +1,6 @@
 
 package by.tempus.ui.pages.login;
 
-import by.tempus.resources.DataGenerator;
-import org.junit.jupiter.api.Assertions;
-
 public class LoginExpectedMessages {
 
     public static final String LOGIN_FORM_TITLE = "Вход";

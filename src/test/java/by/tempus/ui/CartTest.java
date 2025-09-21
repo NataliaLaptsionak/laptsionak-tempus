@@ -1,7 +1,9 @@
 package by.tempus.ui;
 
+import by.tempus.resources.DataGenerator;
 import by.tempus.ui.pages.cartpage.CartPage;
 import by.tempus.ui.pages.HomePage;
+import by.tempus.ui.pages.cartpage.CartPageExpectedMessages;
 import by.tempus.webDriver.WebDriver;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,9 +23,7 @@ public class CartTest extends BaseTest {
         CartPage cartPage = new CartPage();
         cartPage.openCart();
 
-        String expectedMessage = "В вашей корзине пока ничего нет.";
-        Assertions.assertTrue(cartPage.getEmptyCartMessageText().contains(expectedMessage),
-                "Сообщение о пустой корзине неверное.");
+        Assertions.assertEquals(CartPageExpectedMessages.EMPTY_CART_MESSAGE, cartPage.getEmptyCartMessageText());
     }
 
     @Test
@@ -43,8 +43,7 @@ public class CartTest extends BaseTest {
 
         cartPage.openCart();
 
-        Assertions.assertEquals(2, cartPage.getCartItemCount(),
-                "Количество уникальных товаров в корзине не равно двум.");
+        Assertions.assertEquals(2, cartPage.getCartItemCount());
     }
 
     @Test
@@ -58,15 +57,15 @@ public class CartTest extends BaseTest {
         cartPage.clickAddToCart();
         cartPage.openCart();
 
-        Assertions.assertEquals("1", cartPage.getItemQuantity(), "Начальное количество товара не равно 1.");
+        Assertions.assertEquals("1", cartPage.getItemQuantity());
 
         cartPage.increaseQuantity();
-        Thread.sleep(1000); // Пауза для AJAX
-        Assertions.assertEquals("2", cartPage.getItemQuantity(), "Количество товара не увеличилось до 2.");
+        Thread.sleep(1000);
+        Assertions.assertEquals("2", cartPage.getItemQuantity());
 
         cartPage.decreaseQuantity();
-        Thread.sleep(1000); // Пауза для AJAX
-        Assertions.assertEquals("1", cartPage.getItemQuantity(), "Количество товара не уменьшилось до 1.");
+        Thread.sleep(1000);
+        Assertions.assertEquals("1", cartPage.getItemQuantity());
     }
 
     @Test
@@ -81,9 +80,7 @@ public class CartTest extends BaseTest {
         cartPage.openCart();
         cartPage.clearCart();
         cartPage.openCart();
-        String expectedMessage = "В вашей корзине пока ничего нет.";
-        Assertions.assertTrue(cartPage.getEmptyCartMessageText().contains(expectedMessage),
-                "Сообщение о пустой корзине не появилось после очистки.");
+        Assertions.assertEquals(CartPageExpectedMessages.EMPTY_CART_MESSAGE, cartPage.getEmptyCartMessageText());
     }
 
     @Test
@@ -97,14 +94,11 @@ public class CartTest extends BaseTest {
         cartPage.clickAddToCart();
         cartPage.openCart();
 
-        cartPage.fillCheckoutForm("Тестов Тест Тестович", "invalid-email", "+375291111111");
+        cartPage.fillCheckoutForm(DataGenerator.generateValidFullName(), DataGenerator.generateInvalidEmail(), DataGenerator.generateValidPassword());
         cartPage.selectCityMinsk();
         cartPage.clickPlaceOrderButton();
 
-        String expectedMessage = "Некорректный E-Mail";
-
-        Assertions.assertEquals(expectedMessage, cartPage.getIncorrectEmailErrorMessage(),
-                "Сообщение об ошибке не появилось или его текст неверный.");
+        Assertions.assertEquals(CartPageExpectedMessages.INVALID_EMAIL_ERROR, cartPage.getIncorrectEmailErrorMessage());
     }
 
     @Test
@@ -118,14 +112,11 @@ public class CartTest extends BaseTest {
         cartPage.clickAddToCart();
         cartPage.openCart();
 
-        cartPage.fillCheckoutForm("Тестов Тест Тестович", "test8@gmail.com", "");
+        cartPage.fillCheckoutForm(DataGenerator.generateValidFullName(), DataGenerator.generateValidEmail(), "");
         cartPage.selectCityMinsk();
         cartPage.clickPlaceOrderButton();
 
-        String expectedMessage = "\"Телефон\": обязательно для заполнения";
-
-        Assertions.assertEquals(expectedMessage, cartPage.getEmptyPhoneErrorMessage(),
-                "Сообщение об ошибке не появилось или его текст неверный.");
+        Assertions.assertEquals(CartPageExpectedMessages.EMPTY_PHONE_FIELD_ERROR, cartPage.getEmptyPhoneErrorMessage(), "");
     }
 
     @Test

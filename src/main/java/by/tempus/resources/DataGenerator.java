@@ -17,9 +17,7 @@ public class DataGenerator {
     }
 
     public static String generateValidBelarusianPhoneNumber() {
-        // Генерирует случайный двухзначный операторский код (29, 33, 44)
         String operatorCode = String.format("%02d", random.nextInt(3) == 0 ? 29 : (random.nextInt(2) == 0 ? 33 : 44));
-        // Генерирует случайный семизначный абонентский номер
         String subscriberNumber = RandomStringUtils.randomNumeric(7);
         return "+375" + operatorCode + subscriberNumber;
     }
@@ -40,8 +38,8 @@ public class DataGenerator {
         return "123"; // Too short
     }
 
-    public static String generateRepeatPassword(String password) {
-        return password;
+    public static String generateValidRepeatPassword() {
+        return "Password-1";
     }
 
     public static String generateInvalidRepeatPassword() {

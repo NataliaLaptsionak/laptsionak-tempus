@@ -14,10 +14,7 @@ public class RestorePasswordForm {
     private final String TAB_REGISTRATION = "//li[contains(@class, '')]//button[text()='Регистрация']";;
     private final String LABEL_EMAIL_FIELD_TEXT = "//label[@class=\"form-input is-required is-email\"]";
     private final String INPUT_RESTORE_PASSWORD_EMAIL = "//label[@class=\"form-input is-required is-email\"]";
-    private final String CONSULTANT_ICON = "//div[@class=\"consultant-icon ie-fallback\"]";
     private final String RESTORE_PASSWORD_UNREGISTERED_EMAIL_ERROR = "//div[@class='success-popup__text']";
-   // private final String TAB_REGISTRATION = "//li[contains(@class, '')]//button[text()='Регистрация']";;
-
 
     public void clickButtonLogin() {
         WebDriver.clickElement(BUTTON_LOGIN);

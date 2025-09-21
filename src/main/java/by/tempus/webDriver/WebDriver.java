@@ -36,32 +36,6 @@ public class WebDriver {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
     }
 
-//    public static void clickElement(String xpath) {
-//        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-//        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(org.openqa.selenium.By.xpath(xpath)));
-//        // Добавляем скролл перед кликом
-//        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
-//        element.click();
-//    }
-
-//    public static void clickElement(String xpath) {
-//        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-//        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath))).click();
-//    }
-
-//    public static void clickElement(String xpath) {
-//        WebElement element = findElement(xpath);
-//        // Using JavaScript click for robustness, especially if the element is not immediately clickable
-//        ((org.openqa.selenium.JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
-//        element.click();
-//    }
-
-//    public static void clickElementByJs(String xpath) {
-//        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-//        WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
-//        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
-//    }
-
     public static void sendkeysToElement(String xpath, String value) {
         WebElement element = findElement(xpath);
         element.clear();

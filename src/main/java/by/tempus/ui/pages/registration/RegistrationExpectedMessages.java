@@ -28,32 +28,4 @@ public class RegistrationExpectedMessages {
     public static final String EMPTY_CHECHBOX_ERROR = "Это поле обязательно для заполнения.";
     public static final String LOGIN_FORM_TITLE = "Вход";
 
-    private final String TAB_REGISTRATION = "//li[contains(@class, '')]//button[text()='Регистрация']";;
-    private final String INPUT_REGISTRATION_FULL_NAME = "//input[@name=\"fullName\"]";
-    private final String INPUT_REGISTRATION_FULL_NAME_ERROR = "//label[@class=\"form-input is-required is-error\"]//span[@class=\"form-input__error-message\"]";
-
-    private final String INPUT_REGISTRATION_EMAIL = "//form[@class=\"form registration__form js-validate-form\"]//input[@name=\"email\"]";
-    private final String INPUT_REGISTRATION_EMAIL_ERROR = "//label[@class=\"form-input is-required is-email is-error\"]//span[@class=\"form-input__error-message\"]";
-
-    private final String INPUT_REGISTRATION_PHONE = "//input[@type=\"tel\"]";
-    private final String INPUT_REGISTRATION_PHONE_ERROR = "//label[@class=\"form-input is-required is-phone phone-input is-error\"]//span[@class=\"form-input__error-message\"]";
-
-    private final String INPUT_REGISTRATION_PASSWORD = "//label[@class=\"form-input is-required is-password is-error\"]//input[@type=\"password\"]";
-    private final String INPUT_REGISTRATION_PASSWORD_ERROR = "//label[@class=\"form-input is-required is-password is-error\"]//span[@class=\"form-input__error-message\"]";
-
-    private final String INPUT_REGISTRATION_REPEAT_PASSWORD = "//label[@class=\"form-input is-required is-confirm-password\"]//input[@type=\"password\"]";
-    private final String INPUT_REGISTRATION_REPEAT_PASSWORD_ERROR = "//label[@class=\"form-input is-required is-confirm-password is-error\"]//span[@class=\"form-input__error-message\"]";
-
-    private final String BUTTON_REGISTRATION = "//form[@class=\"form registration__form js-validate-form\"]//button[@type=\"submit\"]";
-
-    private final String LABEL_FULL_NAME_FIELD_TEXT = "//form[@class=\"form registration__form js-validate-form\"]//label[@class=\"form-input is-required\"]//span[@class=\"form-input__placeholder\"]";
-    private final String LABEL_EMAIL_FIELD_TEXT = "//form[@class=\"form registration__form js-validate-form\"]//label[@class=\"form-input is-required is-email\"]//span[@class=\"form-input__placeholder\"]";
-    private final String LABEL_PHONE_FIELD_TEXT = "//form[@class=\"form registration__form js-validate-form\"]//label[@class=\"form-input is-required is-phone phone-input\"]//span[@class=\"form-input__placeholder\"]";
-    private final String LABEL_PASSWORD_FIELD_TEXT = "//form[@class=\"form registration__form js-validate-form\"]//label[@class=\"form-input is-required is-password\"]//span[@class=\"form-input__placeholder\"]";
-    private final String LABEL_REPEAT_PASSWORD_FIELD_TEXT = "//label[@class=\"form-input is-required is-confirm-password\"]//span[@class=\"form-input__placeholder\"]";
-
-    private final String AGREEMENT_CHECKBOX = "//span[@class=\"checkbox-input__check\"]";
-    private final String AGREEMENT_CHECKBOX_ERROR = "//div[@class=\"form__agreement\"]//span[@class=\"form-input__error-message\"]";
-    private final String AGREEMENT_CHECKBOX_TEXT = "//form[@class=\"form registration__form js-validate-form\"]//span[@class=\"agreement__text\"]";
-    private final String LOGIN_FORM_TITLE = "//button[contains(@class, 'tabs_btn-action') and text()='Вход']";
 }

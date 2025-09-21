@@ -1,3 +1,4 @@
+
 // На основании RegistrationApiTest создавался RegistrationTest (позже класс будет удален)
 
 package by.tempus.api;

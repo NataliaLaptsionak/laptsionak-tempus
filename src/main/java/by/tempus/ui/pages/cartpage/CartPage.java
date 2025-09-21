@@ -19,7 +19,7 @@ public class CartPage {
     private final String ITEM_DECREASE_QUANTITY_BUTTON = "//div[@class='cart-item-counter__button is-minus']";
     private final String CART_ITEMS_LIST = "//span[@class='icons__counter icons__counter--cart']";
     private final String ITEM_QUANTITY_INPUT = "//input[@class='cart-item-counter__field h6']";
-    private final String EMPTY_CART_MESSAGE_BLOCK = "//div[@class='empty-cart' and contains(., 'В вашей корзине пока ничего нет.')]";
+    private final String EMPTY_CART_MESSAGE = "//div[@class='empty-cart' and contains(., 'В вашей корзине пока ничего нет.')]";
     private final String GO_TO_CATALOG_BUTTON_FROM_EMPTY_CART = "//a[@class='catalog-button']";
     private final String FULL_NAME_INPUT = "//input[@id='ORDER_PROP_19']";
     private final String EMAIL_INPUT = "//input[@id='ORDER_PROP_20']";
@@ -65,11 +65,13 @@ public class CartPage {
         return this;
     }
 
-    public CartPage decreaseQuantity() {        WebDriver.clickElement(ITEM_DECREASE_QUANTITY_BUTTON);
+    public CartPage decreaseQuantity() {
+        WebDriver.clickElement(ITEM_DECREASE_QUANTITY_BUTTON);
         return this;
     }
 
-    public CartPage clearCart() {        WebDriver.clickElement(CLEAR_CART_BUTTON);
+    public CartPage clearCart() {
+        WebDriver.clickElement(CLEAR_CART_BUTTON);
         return this;
     }
 
@@ -80,11 +82,13 @@ public class CartPage {
         return this;
     }
 
-    public CartPage selectCityMinsk() {        WebDriver.clickElement(CITY_MINSK_TAG);
+    public CartPage selectCityMinsk() {
+        WebDriver.clickElement(CITY_MINSK_TAG);
         return this;
     }
 
-    public CartPage selectPaymentByCash() {         WebDriver.clickElement(PAYMENT_CASH_RADIO);
+    public CartPage selectPaymentByCash() {
+        WebDriver.clickElement(PAYMENT_CASH_RADIO);
         return this;
     }
 
@@ -107,7 +111,7 @@ public class CartPage {
     }
 
     public String getEmptyCartMessageText() {
-        return WebDriver.getTextFromElement(EMPTY_CART_MESSAGE_BLOCK);
+        return WebDriver.getTextFromElement(EMPTY_CART_MESSAGE);
     }
 
     public void clickPlaceOrderButton() {
