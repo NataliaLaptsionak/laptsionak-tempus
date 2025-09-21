@@ -1,5 +1,7 @@
 package by.tempus.ui;
 
+import by.tempus.ui.pages.cartpage.CartPage;
+import by.tempus.ui.pages.HomePage;
 import by.tempus.webDriver.WebDriver;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

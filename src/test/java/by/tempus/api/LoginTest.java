@@ -6,20 +6,28 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import by.tempus.resources.DataGenerator;
 
 public class LoginTest {
 
     private LoginService loginService;
+    private String validLogin;
+    private String validPassword;
+    private String invalidLogin;
+
 
     @BeforeEach
     public void setup() {
         loginService = new LoginService();
+        validLogin = DataGenerator.generateValidEmail();
+        validPassword = DataGenerator.generateValidPassword();
+        invalidLogin = DataGenerator.generateInvalidEmail();
     }
 
     @Test
-    @DisplayName("Verify login with invalid credentials (API response). Неверные учетные данные или пользователь деактивирован\\заблокирован")
+    @DisplayName("Verify login with invalid credentials (API response). Such user doesn't exist. Неверные учетные данные или пользователь деактивирован\\заблокирован")
     public void testLoginWithInvalidCredentials() {
-        loginService.doRequest("incorrect@mail.ru", "wrongpassword");
+        loginService.doRequest(validLogin, validPassword);
         assertAll(
                 () -> assertEquals(200, loginService.getStatusCode(), "Expected status code is 200"),
                 () -> assertEquals(ExpectedMessages.INVALID_CREDENTIALS, loginService.getErrorMessage(), "Incorrect error message")
@@ -29,7 +37,7 @@ public class LoginTest {
     @Test
     @DisplayName("Verify login with empty email (API response). Не указан Email")
     public void testLoginWithEmptyEmail() {
-        loginService.doRequest("", "34567");
+        loginService.doRequest("", validPassword);
         assertAll(
                 () -> assertEquals(200, loginService.getStatusCode(), "Expected status code is 200"),
                 () -> assertEquals(ExpectedMessages.EMPTY_EMAIL, loginService.getErrorMessage(), "Incorrect error message for empty email")
@@ -39,7 +47,7 @@ public class LoginTest {
     @Test
     @DisplayName("Verify login with empty password (API response). Не указан Пароль")
     public void testLoginWithEmptyPassword() {
-        loginService.doRequest("test5@gmail.com", "");
+        loginService.doRequest(validLogin, "");
         assertAll(
                 () -> assertEquals(200, loginService.getStatusCode(), "Expected status code is 200"),
                 () -> assertEquals(ExpectedMessages.EMPTY_PASSWORD, loginService.getErrorMessage(), "Incorrect error message for empty password")
@@ -49,7 +57,7 @@ public class LoginTest {
     @Test
     @DisplayName("Verify login with incorrect email format (API response). Некорректный Email")
     public void testLoginWithIncorrectEmailFormat() {
-        loginService.doRequest("@gmail.com", "34567");
+        loginService.doRequest(invalidLogin,validPassword);
         assertAll(
                 () -> assertEquals(200, loginService.getStatusCode(), "Expected status code is 200"),
                 () -> assertEquals(ExpectedMessages.INVALID_EMAIL_FORMAT, loginService.getErrorMessage(), "Incorrect error message for invalid email format")

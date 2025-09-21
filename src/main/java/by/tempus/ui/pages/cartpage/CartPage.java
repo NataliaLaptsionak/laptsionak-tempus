@@ -1,4 +1,4 @@
-package by.tempus.ui;
+package by.tempus.ui.pages.cartpage;
 
 import by.tempus.webDriver.WebDriver;
 import org.openqa.selenium.By;
@@ -65,13 +65,11 @@ public class CartPage {
         return this;
     }
 
-    public CartPage decreaseQuantity() {
-        WebDriver.clickElement(ITEM_DECREASE_QUANTITY_BUTTON);
+    public CartPage decreaseQuantity() {        WebDriver.clickElement(ITEM_DECREASE_QUANTITY_BUTTON);
         return this;
     }
 
-    public CartPage clearCart() {
-        WebDriver.clickElement(CLEAR_CART_BUTTON);
+    public CartPage clearCart() {        WebDriver.clickElement(CLEAR_CART_BUTTON);
         return this;
     }
 
@@ -82,13 +80,11 @@ public class CartPage {
         return this;
     }
 
-    public CartPage selectCityMinsk() {
-        WebDriver.clickElement(CITY_MINSK_TAG);
+    public CartPage selectCityMinsk() {        WebDriver.clickElement(CITY_MINSK_TAG);
         return this;
     }
 
-    public CartPage selectPaymentByCash() {
-        WebDriver.clickElement(PAYMENT_CASH_RADIO);
+    public CartPage selectPaymentByCash() {         WebDriver.clickElement(PAYMENT_CASH_RADIO);
         return this;
     }
 

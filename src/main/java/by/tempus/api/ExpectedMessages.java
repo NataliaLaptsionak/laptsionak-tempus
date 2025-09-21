@@ -13,6 +13,6 @@ public class ExpectedMessages {
     public static final String INCORRECT_REPEAT_PASSWORD = "Некорректное подтверждение пароля";
     public static final String PASSWORD_LENGTH_RESTRICTION = "Пароль должен  быть не менее 6 символов длиной.<br>";
 
-    public static final String REGISTRATION_WITH_EXISTING_PHONE = "Пользователь с номером телефона +375299999999 уже существует";
+    public static final String REGISTRATION_WITH_EXISTING_PHONE = "Указанный номер телефона используется другим пользователем";
     public static final String REGISTRATION_WITH_EXISTING_EMAIL = "Указанный email используется другим пользователем";
 }

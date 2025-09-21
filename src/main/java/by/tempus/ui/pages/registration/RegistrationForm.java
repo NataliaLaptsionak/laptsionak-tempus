@@ -1,4 +1,4 @@
-package by.tempus.ui;
+package by.tempus.ui.pages.registration;
 
 import by.tempus.webDriver.WebDriver;
 import org.openqa.selenium.JavascriptExecutor;
@@ -39,7 +39,7 @@ private final String AGREEMENT_CHECKBOX_TEXT = "//form[@class=\"form registratio
 public RegistrationForm() {
     }
 
-    public String getTitleRegistrationFormText() {
+    public String getTitleRegistrationTab() {
     return WebDriver.getTextFromElement(TAB_REGISTRATION);
     }
 

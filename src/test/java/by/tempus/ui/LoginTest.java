@@ -1,11 +1,20 @@
 package by.tempus.ui;
 
+import by.tempus.ui.pages.HomePage;
+import by.tempus.ui.pages.RestorePasswordForm;
+import by.tempus.ui.pages.login.LoginExpectedMessages;
+import by.tempus.ui.pages.login.LoginForm;
+import by.tempus.ui.pages.registration.RegistrationForm;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+
+import by.tempus.resources.DataGenerator;
 public class LoginTest extends BaseTest {
+
+    LoginForm loginForm = new LoginForm();
 
     @BeforeEach
     public void openHomePageClickButtonLogIn() {
@@ -14,92 +23,84 @@ public class LoginTest extends BaseTest {
                 .сlickButtonLogin();
     }
 
+
     @Test
     @DisplayName("Verification of the login form title. Проверка заголовка на форме логин")
     public void verifyLoginFormTitle() {
-        LoginForm loginForm = new LoginForm();
-        Assertions.assertEquals("Вход", loginForm.getLoginFormTitleText());
+        Assertions.assertEquals(LoginExpectedMessages.LOGIN_FORM_TITLE, loginForm.getLoginFormTitleText());
     }
 
     @Test
-    @DisplayName("Verification of fields presence on the login form. Проверка наличия элементов на форме логин")
+    @DisplayName("Verification of fields presence on the login form. Проверка наличия элементов в форме логин")
     public void verifyLoginFormFields() {
-        LoginForm loginForm = new LoginForm();
-        Assertions.assertEquals("Вход", loginForm.getLoginFormTitleText());
-        Assertions.assertEquals("Email", loginForm.getLabelEmailText());
-        Assertions.assertEquals("Пароль", loginForm.getLabelPasswordText());
-        Assertions.assertEquals("Восстановить пароль", loginForm.getButtonRestorePasswordText());
-        Assertions.assertEquals("Войти в аккаунт", loginForm.getButtonLoginText());
-        Assertions.assertEquals("Регистрация", loginForm.getButtonRegistrationFormText());
+        Assertions.assertEquals(LoginExpectedMessages.LOGIN_FORM_TITLE, loginForm.getLoginFormTitleText());
+        Assertions.assertEquals(LoginExpectedMessages.EMAIL_FIELD_LABEL, loginForm.getLabelEmailText());
+        Assertions.assertEquals(LoginExpectedMessages.PASSWORD_FIELD_LABEL, loginForm.getLabelPasswordText());
+        Assertions.assertEquals(LoginExpectedMessages.RESTORE_PASSWORD_FIELD_LABEL, loginForm.getButtonRestorePasswordText());
+        Assertions.assertEquals(LoginExpectedMessages.LOGIN_BUTTON_TEXT, loginForm.getButtonLoginText());
+        Assertions.assertEquals(LoginExpectedMessages.REGISTRATION_TAB_TITLE, loginForm.getButtonRegistrationFormText());
     }
 
     @Test
     @DisplayName("Verification of error messages for empty required fields. Проверка сообщений об ошибках для обязательных полей при пустых значениях")
     public void verifyErrorMessagesForEmptyFields() {
-        LoginForm loginForm = new LoginForm();
         loginForm.clickButtonLogin();
-
-        Assertions.assertEquals("Это поле обязательно для заполнения.", loginForm.getLoginEmailError());
-        Assertions.assertEquals("Это поле обязательно для заполнения.", loginForm.getLoginPasswordError());
+        Assertions.assertEquals(LoginExpectedMessages.EMPTY_EMAIL_FIELD_ERROR, loginForm.getEmptyEmailError());
+        Assertions.assertEquals(LoginExpectedMessages.EMPTY_PASSWORD_FIELD_ERROR, loginForm.getEmptyPasswordError());
     }
 
     @Test
     @DisplayName("Verification of error message for empty 'Password' field. Проверка сообщения об ошибке для обязательного поля 'Пароль' при пустом значении")
     public void verifyErrorMessageForEmptyPasswordField() {
-        LoginForm loginForm = new LoginForm();
-        loginForm.sendKeysLogin("test.login@gmail.com");
+        loginForm.sendKeysLogin(DataGenerator.generateValidEmail());
         loginForm.clickButtonLogin();
 
-        Assertions.assertEquals("Это поле обязательно для заполнения.", loginForm.getLoginPasswordError());
+        Assertions.assertEquals(LoginExpectedMessages.EMPTY_PASSWORD_FIELD_ERROR, loginForm.getEmptyPasswordError());
     }
 
     @Test
     @DisplayName("Verification of error message for empty 'Email' field. Проверка сообщения об ошибке для обязательного поля 'Email' при пустом значении")
     public void verifyErrorMessageForEmptyEmailField() {
-        LoginForm loginForm = new LoginForm();
-        loginForm.sendKeysPassword("1111qwerty");
+        loginForm.fillLoginForm("", DataGenerator.generateValidPassword());
         loginForm.clickButtonLogin();
 
-        Assertions.assertEquals("Это поле обязательно для заполнения.", loginForm.getLoginEmailError());
+        Assertions.assertEquals(LoginExpectedMessages.EMPTY_EMAIL_FIELD_ERROR, loginForm.getEmptyEmailError());
     }
-
+///
     @Test
     @DisplayName("Verification of error message for invalid Email format. Проверка сообщения об ошибке для невалидного формата Email")
     public void invalidEmailFormatTest() {
-        LoginForm loginForm = new LoginForm();
-        loginForm.fillLoginForm("testemail.com", "some_password");
+        loginForm.sendKeysLogin(DataGenerator.generateInvalidEmail());
+        loginForm.sendKeysPassword(DataGenerator.generateValidPassword());
+        loginForm.clickButtonLogin();
 
-        String expectedMessage = "Адрес электронной почты должен содержать символ \"@\". В адресе \"testemail.com\" отсутствует символ \"@\".";
-
-        Assertions.assertEquals(expectedMessage, loginForm.getEmailValidationMessage());
+        Assertions.assertEquals(LoginExpectedMessages.INVALID_EMAIL_FORMAT_ERROR, loginForm.getEmailValidationMessage());
     }
 
     @Test
     @DisplayName("Verification of error message for unregistered credentials. Проверка сообщения об ошибке при вводе незарегистрированных креденшиалз")
     public void InvalidCredentialsTest() {
-        LoginForm loginForm = new LoginForm();
-        loginForm.fillLoginForm("test@email.com", "some_password");
+        loginForm.sendKeysLogin(DataGenerator.generateValidEmail());
+        loginForm.sendKeysPassword(DataGenerator.generateValidPassword());
+        loginForm.clickButtonLogin();
 
-        String expectedMessage = "Неверные учетные данные или пользователь деактивирован\\заблокирован";
-
-        Assertions.assertEquals(expectedMessage, loginForm.getLoginCredentialsError());
+        Assertions.assertEquals(LoginExpectedMessages.UNREGISTERED_CREDENTIALS_ERROR, loginForm.getLoginCredentialsError());
     }
 
     @Test
     @DisplayName("Verification of redirection to password recovery form. Проверка перехода в форму восстановления пароля")
     public void RestorePasswordFormRedirectionTest() {
-        LoginForm loginForm = new LoginForm();
-        loginForm.clickButtonRestorePassword();
-
-        Assertions.assertEquals("Для восстановления пароля, введите Email", loginForm.getRestorePasswordFormTitleText());
+        loginForm.clickRestorePasswordLink();
+        RestorePasswordForm restorePasswordForm = new RestorePasswordForm();
+        Assertions.assertEquals(LoginExpectedMessages.RESTORE_PASSWORD_TEXT, loginForm.getRestorePasswordFormTitleText());
     }
 
     @Test
     @DisplayName("Verification of redirection to registration form. Проверка перехода в форму регистрации")
     public void RegistrationFormRedirectionTest() {
-        LoginForm loginForm = new LoginForm();
-        loginForm.clickButtonRegistrationForm();
+        loginForm.clickTabRegistration();
+        RegistrationForm registrationForm = new RegistrationForm();
 
-        Assertions.assertEquals("Регистрация", loginForm.getButtonRegistrationFormText());
+        Assertions.assertEquals(LoginExpectedMessages.REGISTRATION_BUTTON_TEXT, registrationForm.getTitleRegistrationTab());
     }
 }

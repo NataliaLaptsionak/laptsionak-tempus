@@ -1,11 +1,16 @@
 package by.tempus.ui;
 
+import by.tempus.resources.DataGenerator;
+import by.tempus.ui.pages.HomePage;
+import by.tempus.ui.pages.registration.RegistrationExpectedMessages;
+import by.tempus.ui.pages.registration.RegistrationForm;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class RegistrationTest extends BaseTest {
+    private RegistrationForm registrationForm;
 
     @BeforeEach
     public void openHomePageClickButtonLogIn() {
@@ -19,7 +24,7 @@ public class RegistrationTest extends BaseTest {
     public void verifyRegistrationFormTitle() {
         RegistrationForm registrationForm = new RegistrationForm();
         registrationForm.clickTabRegistration();
-        Assertions.assertEquals("Регистрация", registrationForm.getTitleRegistrationFormText());
+        Assertions.assertEquals(RegistrationExpectedMessages.REGISTRATION_TAB_TITLE, registrationForm.getTitleRegistrationTab());
     }
 
     @Test
@@ -27,15 +32,14 @@ public class RegistrationTest extends BaseTest {
     public void verifyLRegistrationFormFields() {
         RegistrationForm registrationForm = new RegistrationForm();
         registrationForm.clickTabRegistration();
-        Assertions.assertEquals("Регистрация", registrationForm.getTitleRegistrationFormText());
-        Assertions.assertEquals("ФИО", registrationForm.getLabelFulNameFieldText());
-        Assertions.assertEquals("Email", registrationForm.getLabelEmailFieldText());
-        Assertions.assertEquals("Телефон", registrationForm.getLabelPhoneFieldText());
-        Assertions.assertEquals("Пароль", registrationForm.getLabelPasswordFieldText());
-        Assertions.assertEquals("Повторить пароль", registrationForm.getLabelRepeatPasswordFieldText());
-        Assertions.assertEquals("Я согласен с условиями оферты и политикой конфиденциальности.", registrationForm.getLabelAgreementCheckboxText());
-//        registrationForm.clickButtonRegistration();
-        Assertions.assertEquals("Регистрация", registrationForm.getButtonRegistrationText());
+        Assertions.assertEquals(RegistrationExpectedMessages.REGISTRATION_TAB_TITLE, registrationForm.getTitleRegistrationTab());
+        Assertions.assertEquals(RegistrationExpectedMessages.FULL_NAME_FIELD_LABEL, registrationForm.getLabelFulNameFieldText());
+        Assertions.assertEquals(RegistrationExpectedMessages.EMAIL_FIELD_LABEL, registrationForm.getLabelEmailFieldText());
+        Assertions.assertEquals(RegistrationExpectedMessages.PHONE_FIELD_LABEL, registrationForm.getLabelPhoneFieldText());
+        Assertions.assertEquals(RegistrationExpectedMessages.PASSWORD_FIELD_LABEL, registrationForm.getLabelPasswordFieldText());
+        Assertions.assertEquals(RegistrationExpectedMessages.REPEAT_PASSWORD_FIELD_LABEL, registrationForm.getLabelRepeatPasswordFieldText());
+        Assertions.assertEquals(RegistrationExpectedMessages.AGREEMENT_CHECKBOX_LABEL, registrationForm.getLabelAgreementCheckboxText());
+        Assertions.assertEquals(RegistrationExpectedMessages.REGISTRATION_BUTTON_TEXT, registrationForm.getButtonRegistrationText());
     }
 
     @Test
@@ -45,11 +49,11 @@ public class RegistrationTest extends BaseTest {
         registrationForm.clickTabRegistration();
         registrationForm.clickButtonRegistration();
 
-        Assertions.assertEquals("Это поле обязательно для заполнения.", registrationForm.getRegistrationFullNameError());
-        Assertions.assertEquals("Это поле обязательно для заполнения.", registrationForm.getRegistrationEmailError());
-        Assertions.assertEquals("Некорректный номер телефона.", registrationForm.getRegistrationPhoneError());
-        Assertions.assertEquals("Это поле обязательно для заполнения.", registrationForm.getRegistrationPasswordError());
-        Assertions.assertEquals("Это поле обязательно для заполнения.", registrationForm.getAgreementCheckboxError());
+        Assertions.assertEquals(RegistrationExpectedMessages.EMPTY_FULL_NAME_ERROR, registrationForm.getRegistrationFullNameError());
+        Assertions.assertEquals(RegistrationExpectedMessages.EMPTY_EMAIL, registrationForm.getRegistrationEmailError());
+        Assertions.assertEquals(RegistrationExpectedMessages.EMPTY_PHONE, registrationForm.getRegistrationPhoneError());
+        Assertions.assertEquals(RegistrationExpectedMessages.EMPTY_PASSWORD, registrationForm.getRegistrationPasswordError());
+        Assertions.assertEquals(RegistrationExpectedMessages.EMPTY_CHECHBOX_ERROR, registrationForm.getAgreementCheckboxError());
     }
 
     @Test
@@ -57,16 +61,14 @@ public class RegistrationTest extends BaseTest {
     public void verifyErrorMessageForEmptyFullNameField() {
         RegistrationForm registrationForm = new RegistrationForm();
         registrationForm.clickTabRegistration();
-        registrationForm.clickButtonRegistration();
 
-        registrationForm.sendKeysEmail("testemail@gmail.com");
-        registrationForm.sendKeysPhone("+375257605030");
-        registrationForm.sendKeysPassword("12345");
-        registrationForm.sendKeysRepeatPassword("12345");
+        registrationForm.sendKeysEmail(DataGenerator.generateValidEmail());
+        registrationForm.sendKeysPhone(DataGenerator.generateValidBelarusianPhoneNumber());
+        registrationForm.sendKeysPassword(DataGenerator.generateValidPassword());
+        registrationForm.sendKeysRepeatPassword(DataGenerator.generateRepeatPassword());
         registrationForm.clickAgreementCheckbox();
         registrationForm.clickButtonRegistration();
-
-        Assertions.assertEquals("Это поле обязательно для заполнения.", registrationForm.getRegistrationFullNameError());
+        Assertions.assertEquals(RegistrationExpectedMessages.EMPTY_FULL_NAME, registrationForm.getRegistrationFullNameError());
     }
 
     @Test
@@ -74,16 +76,14 @@ public class RegistrationTest extends BaseTest {
     public void verifyErrorMessageForEmptyField() {
         RegistrationForm registrationForm = new RegistrationForm();
         registrationForm.clickTabRegistration();
-        registrationForm.clickButtonRegistration();
 
-        registrationForm.sendKeysFullName("Красновская Екатерина Викторовна");
-        registrationForm.sendKeysPhone("+375257605030");
-        registrationForm.sendKeysPassword("12345");
-        registrationForm.sendKeysRepeatPassword("12345");
+        registrationForm.sendKeysFullName(DataGenerator.generateValidFullName());
+        registrationForm.sendKeysPhone(DataGenerator.generateValidBelarusianPhoneNumber());
+        registrationForm.sendKeysPassword(DataGenerator.generateValidPassword());
+        registrationForm.sendKeysRepeatPassword(DataGenerator.generateRepeatPassword());
         registrationForm.clickAgreementCheckbox();
         registrationForm.clickButtonRegistration();
-
-        Assertions.assertEquals("Это поле обязательно для заполнения.", registrationForm.getRegistrationEmailError());
+        Assertions.assertEquals(RegistrationExpectedMessages.EMPTY_EMAIL, registrationForm.getRegistrationEmailError());
     }
 
     @Test
@@ -91,16 +91,14 @@ public class RegistrationTest extends BaseTest {
     public void verifyErrorMessageForEmptyPhone() {
         RegistrationForm registrationForm = new RegistrationForm();
         registrationForm.clickTabRegistration();
-        registrationForm.clickButtonRegistration();
 
-        registrationForm.sendKeysFullName("Красновская Екатерина Викторовна");
-        registrationForm.sendKeysEmail("testemail@gmail.com");
-        registrationForm.sendKeysPassword("12345");
-        registrationForm.sendKeysRepeatPassword("12345");
+        registrationForm.sendKeysFullName(DataGenerator.generateValidFullName());
+        registrationForm.sendKeysEmail(DataGenerator.generateValidEmail());
+        registrationForm.sendKeysPassword(DataGenerator.generateValidPassword());
+        registrationForm.sendKeysRepeatPassword(DataGenerator.generateRepeatPassword());
         registrationForm.clickAgreementCheckbox();
         registrationForm.clickButtonRegistration();
-
-        Assertions.assertEquals("Некорректный номер телефона.", registrationForm.getRegistrationPhoneError());
+        Assertions.assertEquals(RegistrationExpectedMessages.EMPTY_PHONE, registrationForm.getRegistrationPhoneError());
     }
 
     @Test
@@ -108,16 +106,14 @@ public class RegistrationTest extends BaseTest {
     public void verifyErrorMessageForEmptyPassword() {
         RegistrationForm registrationForm = new RegistrationForm();
         registrationForm.clickTabRegistration();
-        registrationForm.clickButtonRegistration();
 
-        registrationForm.sendKeysFullName("Красновская Екатерина Викторовна");
-        registrationForm.sendKeysEmail("testemail@gmail.com");
-        registrationForm.sendKeysPhone("+375257605030");
-        registrationForm.sendKeysRepeatPassword("12345");
+        registrationForm.sendKeysFullName(DataGenerator.generateValidFullName());
+        registrationForm.sendKeysEmail(DataGenerator.generateValidEmail());
+        registrationForm.sendKeysPhone(DataGenerator.generateValidBelarusianPhoneNumber());
+        registrationForm.sendKeysRepeatPassword(DataGenerator.generateRepeatPassword());
         registrationForm.clickAgreementCheckbox();
         registrationForm.clickButtonRegistration();
-
-        Assertions.assertEquals("Это поле обязательно для заполнения.", registrationForm.getRegistrationPasswordError());
+        Assertions.assertEquals(RegistrationExpectedMessages.PASSWORD_LENGTH_RESTRICTION, registrationForm.getRegistrationPasswordError());
     }
 
     @Test
@@ -125,16 +121,14 @@ public class RegistrationTest extends BaseTest {
     public void verifyErrorMessageForEmptyRepeatPassword() {
         RegistrationForm registrationForm = new RegistrationForm();
         registrationForm.clickTabRegistration();
-        registrationForm.clickButtonRegistration();
 
-        registrationForm.sendKeysFullName("Красновская Екатерина Викторовна");
-        registrationForm.sendKeysEmail("testemail@gmail.com");
-        registrationForm.sendKeysPhone("+375257605030");
-        registrationForm.sendKeysPassword("12345");
+        registrationForm.sendKeysFullName(DataGenerator.generateValidFullName());
+        registrationForm.sendKeysEmail(DataGenerator.generateValidEmail());
+        registrationForm.sendKeysPhone(DataGenerator.generateValidBelarusianPhoneNumber());
+        registrationForm.sendKeysPassword(DataGenerator.generateValidPassword());
         registrationForm.clickAgreementCheckbox();
         registrationForm.clickButtonRegistration();
-
-        Assertions.assertEquals("Пароли не совпадают.", registrationForm.getRegistrationRepeatPasswordError());
+        Assertions.assertEquals(RegistrationExpectedMessages.PASSWORD_LENGTH_RESTRICTION, registrationForm.getRegistrationRepeatPasswordError());
     }
 
     @Test
@@ -144,14 +138,13 @@ public class RegistrationTest extends BaseTest {
         registrationForm.clickTabRegistration();
         registrationForm.clickButtonRegistration();
 
-        registrationForm.sendKeysFullName("Красновская Екатерина Викторовна");
-        registrationForm.sendKeysEmail("testemail@gmail.com");
-        registrationForm.sendKeysPhone("+375257605030");
-        registrationForm.sendKeysPassword("12345");
-        registrationForm.sendKeysRepeatPassword("12345");
+        registrationForm.sendKeysFullName(DataGenerator.generateValidFullName());
+        registrationForm.sendKeysEmail(DataGenerator.generateValidEmail());
+        registrationForm.sendKeysPhone(DataGenerator.generateValidBelarusianPhoneNumber());
+        registrationForm.sendKeysPassword(DataGenerator.generateValidPassword());
+        registrationForm.sendKeysRepeatPassword(DataGenerator.generateValidPassword());
         registrationForm.clickButtonRegistration();
-
-        Assertions.assertEquals("Это поле обязательно для заполнения.", registrationForm.getAgreementCheckboxError());
+        Assertions.assertEquals(RegistrationExpectedMessages.AGREEMENT_CHECKBOX_LABEL, registrationForm.getAgreementCheckboxError());
     }
 
     @Test
@@ -159,22 +152,17 @@ public class RegistrationTest extends BaseTest {
     public void invalidEmailFormatTest() {
         RegistrationForm registrationForm = new RegistrationForm();
         registrationForm.clickTabRegistration();
-        registrationForm.clickButtonRegistration();
 
-        registrationForm.sendKeysFullName("Красновская Екатерина Викторовна");
-        registrationForm.sendKeysEmail("@gmail.com");
-        registrationForm.sendKeysPhone("+375257605030");
-        registrationForm.sendKeysPassword("12345");
-        registrationForm.sendKeysRepeatPassword("12345");
+        registrationForm.sendKeysFullName(DataGenerator.generateValidFullName());
+        registrationForm.sendKeysEmail(DataGenerator.generateInvalidEmail());
+        registrationForm.sendKeysPhone(DataGenerator.generateValidBelarusianPhoneNumber());
+        registrationForm.sendKeysPassword(DataGenerator.generateValidPassword());
+        registrationForm.sendKeysRepeatPassword(DataGenerator.generateValidPassword());
         registrationForm.clickAgreementCheckbox();
         registrationForm.clickButtonRegistration();
-
-//        loginForm.fillLoginForm("testemail.com", "some_password");
-//        String expectedMessage = "Адрес электронной почты должен содержать символ \"@\". В адресе \"testemail.com\" отсутствует символ \"@\".";
-
-//        Assertions.assertEquals(expectedMessage, loginForm.getEmailValidationMessage());
-        Assertions.assertEquals("Введите часть адреса до символа \"@\". Адрес \"@gmail.com\" неполный.", registrationForm.getRegistrationEmailValidationMessage());
+        Assertions.assertEquals(RegistrationExpectedMessages.INVALID_EMAIL_FORMAT, registrationForm.getRegistrationEmailValidationMessage());
     }
+
 
     @Test
     @DisplayName("Verification of redirection to restore password form. Проверка перехода в форму восстановления пароля")
@@ -183,6 +171,6 @@ public class RegistrationTest extends BaseTest {
         registrationForm.clickTabRegistration();
         registrationForm.clickLoginFormTitle();
 
-//        Assertions.assertEquals("Вход", registrationForm.getLoginFormTitleText());
+        Assertions.assertEquals(RegistrationExpectedMessages.LOGIN_FORM_TITLE, registrationForm.getLoginFormTitleText());
     }
 }

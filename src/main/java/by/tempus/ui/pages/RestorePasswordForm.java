@@ -1,4 +1,4 @@
-package by.tempus.ui;
+package by.tempus.ui.pages;
 
 import by.tempus.webDriver.WebDriver;
 import org.openqa.selenium.JavascriptExecutor;

@@ -1,4 +1,4 @@
-package by.tempus.ui;
+package by.tempus.ui.pages.login;
 
 import by.tempus.webDriver.WebDriver;
 import org.openqa.selenium.JavascriptExecutor;
@@ -10,8 +10,8 @@ public class LoginForm {
     private final String INPUT_LOGIN_EMAIL = "//input[@name='email']";
     private final String INPUT_LOGIN_PASSWORD = "//input[@name='password']";
     private final String BUTTON_LOGIN = "//button[@class='button is-primary' and normalize-space()='Войти в аккаунт']";
-    private final String LOGIN_EMAIL_ERROR = "//input[@name='email']/following-sibling::span[@class='form-input__error-message']";
-    private final String LOGIN_PASSWORD_ERROR = "//input[@name='password']/following-sibling::span[@class='form-input__error-message']";
+    private final String EMPTY_EMAIL_ERROR = "//input[@name='email']/following-sibling::span[@class='form-input__error-message']";
+    private final String EMPTY_PASSWORD_ERROR = "//input[@name='password']/following-sibling::span[@class='form-input__error-message']";
     private final String LOGIN_CREDENTIALS_ERROR = "//div[@class='success-popup__text']";
     private final String LABEL_EMAIL_TEXT = "//label[@class='form-input is-required is-email check-email']//span[@class='form-input__placeholder']";
     private final String LABEL_PASSWORD_TEXT = "//form[@class='form authorize__form js-validate-form']//label[@class='form-input is-required is-password']//span[@class='form-input__placeholder']";
@@ -23,7 +23,6 @@ public class LoginForm {
 
     public LoginForm() {
     }
-
     public String getLoginFormTitleText() {
         return WebDriver.getTextFromElement(LOGIN_FORM_TITLE);
     }
@@ -32,7 +31,7 @@ public class LoginForm {
         return WebDriver.getTextFromElement(BUTTON_REGISTRATION_FORM);
     }
 
-    public void clickButtonRegistrationForm() {
+    public void clickTabRegistration() {
         WebDriver.clickElement(BUTTON_REGISTRATION_FORM);
     }
 
@@ -50,29 +49,25 @@ public class LoginForm {
     public void clickLinkRestorePassword() {
         WebDriver.clickElement(LINK_RESTORE_PASSWORD);
     }
-
     public void sendKeysLogin(String login) {
         WebDriver.sendkeysToElement(INPUT_LOGIN_EMAIL, login);
     }
-
     public void sendKeysPassword(String password) {
         WebDriver.sendkeysToElement(INPUT_LOGIN_PASSWORD, password);
     }
-
     public void clickButtonLogin() {
         WebDriver.clickElement(BUTTON_LOGIN);
     }
-
     public String getLabelPasswordText() {
         return WebDriver.getTextFromElement(LABEL_PASSWORD_TEXT);
     }
 
-    public String getLoginEmailError() {
-        return WebDriver.getTextFromElement(LOGIN_EMAIL_ERROR);
+    public String getEmptyEmailError() {
+        return WebDriver.getTextFromElement(EMPTY_EMAIL_ERROR);
     }
 
-    public String getLoginPasswordError() {
-        return WebDriver.getTextFromElement(LOGIN_PASSWORD_ERROR);
+    public String getEmptyPasswordError() {
+        return WebDriver.getTextFromElement(EMPTY_PASSWORD_ERROR);
     }
 
     public String getLoginCredentialsError() {
@@ -84,14 +79,13 @@ public class LoginForm {
         WebElement emailField = WebDriver.findElement(INPUT_LOGIN_EMAIL);
         return (String) js.executeScript("return arguments[0].validationMessage;", emailField);
     }
-
     public void fillLoginForm(String login, String password) {
         sendKeysLogin(login);
         sendKeysPassword(password);
         clickButtonLogin();
     }
 
-    public void clickButtonRestorePassword() {
+    public void clickRestorePasswordLink() {
         WebDriver.clickElement(LINK_RESTORE_PASSWORD);
     }
 
