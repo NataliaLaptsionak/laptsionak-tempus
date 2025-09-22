@@ -1,7 +1,7 @@
 package by.tempus.ui;
 
-import by.tempus.ui.pages.HomePage;
-import by.tempus.ui.pages.SearchPage;
+import by.tempus.ui.pages.homePage.HomePage;
+import by.tempus.ui.pages.searchPage.SearchPage;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

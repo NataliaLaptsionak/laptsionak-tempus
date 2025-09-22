@@ -1,4 +1,4 @@
-package by.tempus.ui.pages;
+package by.tempus.ui.pages.restorePassword;
 
 import by.tempus.webDriver.WebDriver;
 import org.openqa.selenium.JavascriptExecutor;

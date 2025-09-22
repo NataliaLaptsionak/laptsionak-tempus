@@ -1,6 +1,5 @@
 package by.tempus.api;
 
-import by.tempus.api.login.LoginService;
 import by.tempus.api.passwordRecovery.PasswordRecoveryService;
 import by.tempus.resources.DataGenerator;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,7 +19,7 @@ public class PasswordRecoveryTest {
     public void setUp() {
         passwordRecoveryService = new PasswordRecoveryService();
         validEmail = DataGenerator.generateValidEmail();
-        invalidEmail = DataGenerator.generateInvalidEmail();
+        invalidEmail = DataGenerator.generateIncorrectEmail();
     }
 
     @Test

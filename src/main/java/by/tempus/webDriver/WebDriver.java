@@ -56,7 +56,6 @@ public class WebDriver {
 
     public static void clickElement(String xpath) {
         WebElement element = findElement(xpath);
-        // Using JavaScript click for robustness, especially if the element is not immediately clickable
         ((org.openqa.selenium.JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
         element.click();
     }

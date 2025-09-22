@@ -1,4 +1,4 @@
-package by.tempus.ui.pages;
+package by.tempus.ui.pages.searchPage;
 
 import by.tempus.webDriver.WebDriver;
 

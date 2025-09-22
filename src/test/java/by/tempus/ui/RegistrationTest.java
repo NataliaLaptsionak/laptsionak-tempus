@@ -1,7 +1,7 @@
 package by.tempus.ui;
 
 import by.tempus.resources.DataGenerator;
-import by.tempus.ui.pages.HomePage;
+import by.tempus.ui.pages.homePage.HomePage;
 import by.tempus.ui.pages.registration.RegistrationExpectedMessages;
 import by.tempus.ui.pages.registration.RegistrationForm;
 import org.junit.jupiter.api.Assertions;
@@ -154,7 +154,7 @@ public class RegistrationTest extends BaseTest {
         registrationForm.clickTabRegistration();
 
         registrationForm.sendKeysFullName(DataGenerator.generateValidFullName());
-        registrationForm.sendKeysEmail(DataGenerator.generateInvalidEmail());
+        registrationForm.sendKeysEmail(DataGenerator.generateIncorrectEmail());
         registrationForm.sendKeysPhone(DataGenerator.generateValidBelarusianPhoneNumber());
         registrationForm.sendKeysPassword(DataGenerator.generateValidPassword());
         registrationForm.sendKeysRepeatPassword(DataGenerator.generateValidPassword());

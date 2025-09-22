@@ -21,7 +21,7 @@ public class LoginTest {
         loginService = new LoginService();
         validLogin = DataGenerator.generateValidEmail();
         validPassword = DataGenerator.generateValidPassword();
-        invalidLogin = DataGenerator.generateInvalidEmail();
+        invalidLogin = DataGenerator.generateIncorrectEmail();
     }
 
     @Test

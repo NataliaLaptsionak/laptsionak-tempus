@@ -12,8 +12,20 @@ public class DataGenerator {
         return "test" + System.currentTimeMillis() + "@example.com";
     }
 
-    public static String generateInvalidEmail() {
-        return "invalid-email";
+    public static String generateInvalidEmailMissingPartBeforeAt() {
+        return "@invalid-email.com"; 
+    }
+
+    public static String generateInvalidEmailMissingPartAfterAt() {
+        return "invalid-email@"; 
+    }
+
+    public static String generateInvalidEmailMissingAt() {
+        return "invalidgmail.com";
+    }
+
+    public static String generateIncorrectEmail() {
+        return "1@rtty";
     }
 
     public static String generateValidBelarusianPhoneNumber() {

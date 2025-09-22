@@ -1,8 +1,8 @@
 package by.tempus.ui;
 
-import by.tempus.ui.pages.HomePage;
+import by.tempus.ui.pages.homePage.HomePage;
 import by.tempus.ui.pages.login.LoginForm;
-import by.tempus.ui.pages.RestorePasswordForm;
+import by.tempus.ui.pages.restorePassword.RestorePasswordForm;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

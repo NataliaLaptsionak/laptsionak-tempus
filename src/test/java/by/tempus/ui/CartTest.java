@@ -2,7 +2,7 @@ package by.tempus.ui;
 
 import by.tempus.resources.DataGenerator;
 import by.tempus.ui.pages.cartpage.CartPage;
-import by.tempus.ui.pages.HomePage;
+import by.tempus.ui.pages.homePage.HomePage;
 import by.tempus.ui.pages.cartpage.CartPageExpectedMessages;
 import by.tempus.webDriver.WebDriver;
 import org.junit.jupiter.api.Assertions;
@@ -11,52 +11,45 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class CartTest extends BaseTest {
+    private CartPage cartPage;
 
     @BeforeEach
-    public void openHomePage() {
-        new HomePage().openSite();
+    public void setUp() {
+        HomePage homePage = new HomePage();
+        cartPage = new CartPage();
+        homePage.openSite();
     }
 
     @Test
-    @DisplayName("Проверка отображения пустой корзины")
+    @DisplayName("Verify empty cart display")
     public void viewEmptyCartTest() {
-        CartPage cartPage = new CartPage();
         cartPage.openCart();
-
         Assertions.assertEquals(CartPageExpectedMessages.EMPTY_CART_MESSAGE, cartPage.getEmptyCartMessageText());
     }
 
     @Test
-    @DisplayName("Проверка добавления нескольких разных товаров в корзину")
+    @DisplayName("Verify adding multiple different items to cart")
     public void addMultipleItemsToCartTest() {
-        CartPage cartPage = new CartPage();
-
         cartPage.clickCatalogButton();
         cartPage.clickWomenCategory();
         cartPage.selectFirstMichaelKorsWatch();
-        cartPage.clickAddToCart();
-
-        cartPage.clickCatalogButton();
+        cartPage.clickAddToCart().clickCatalogButton();
         cartPage.clickWomenCategory();
         cartPage.selectSecondMichaelKorsWatch();
         cartPage.clickAddToCart();
-
         cartPage.openCart();
-
         Assertions.assertEquals(2, cartPage.getCartItemCount());
     }
 
     @Test
-    @DisplayName("Проверка увеличения и уменьшения количества товара")
+    @DisplayName("Verify increasing and decreasing item quantity")
     public void increaseAndDecreaseItemQuantityTest() throws InterruptedException {
-        CartPage cartPage = new CartPage();
 
         cartPage.clickCatalogButton();
         cartPage.clickWomenCategory();
         cartPage.selectFirstMichaelKorsWatch();
         cartPage.clickAddToCart();
         cartPage.openCart();
-
         Assertions.assertEquals("1", cartPage.getItemQuantity());
 
         cartPage.increaseQuantity();
@@ -69,10 +62,8 @@ public class CartTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("Проверка полной очистки корзины")
+    @DisplayName("Verify complete cart clearing")
     public void clearCartTest() {
-        CartPage cartPage = new CartPage();
-
         cartPage.clickCatalogButton();
         cartPage.clickWomenCategory();
         cartPage.selectFirstMichaelKorsWatch();
@@ -84,50 +75,38 @@ public class CartTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("Проверка ошибки при вводе невалидного E-mail")
+    @DisplayName("Verify error on checkout with invalid E-mail")
     public void verifyErrorOnCheckoutWithInvalidEmailTest() {
-        CartPage cartPage = new CartPage();
-
         cartPage.clickCatalogButton();
         cartPage.clickWomenCategory();
         cartPage.selectFirstMichaelKorsWatch();
         cartPage.clickAddToCart();
         cartPage.openCart();
-
-        cartPage.fillCheckoutForm(DataGenerator.generateValidFullName(), DataGenerator.generateInvalidEmail(), DataGenerator.generateValidPassword());
+        cartPage.fillCheckoutForm(DataGenerator.generateValidFullName(), DataGenerator.generateIncorrectEmail(), DataGenerator.generateValidPassword());
         cartPage.selectCityMinsk();
         cartPage.clickPlaceOrderButton();
-
         Assertions.assertEquals(CartPageExpectedMessages.INVALID_EMAIL_ERROR, cartPage.getIncorrectEmailErrorMessage());
     }
 
     @Test
-    @DisplayName("Проверка ошибки при незаполнении номера телефона")
+    @DisplayName("Verify error on checkout with empty phone number")
     public void verifyErrorOnCheckoutWithEmptyPhoneNumberTest() {
-        CartPage cartPage = new CartPage();
-
         cartPage.clickCatalogButton();
         cartPage.clickWomenCategory();
         cartPage.selectFirstMichaelKorsWatch();
         cartPage.clickAddToCart();
         cartPage.openCart();
-
         cartPage.fillCheckoutForm(DataGenerator.generateValidFullName(), DataGenerator.generateValidEmail(), "");
         cartPage.selectCityMinsk();
         cartPage.clickPlaceOrderButton();
-
         Assertions.assertEquals(CartPageExpectedMessages.EMPTY_PHONE_FIELD_ERROR, cartPage.getEmptyPhoneErrorMessage(), "");
     }
 
     @Test
-    @DisplayName("Проверка перехода в каталог из пустой корзины")
+    @DisplayName("Verify navigation to catalog from empty cart")
     public void navigateToCatalogFromEmptyCartTest() {
-        CartPage cartPage = new CartPage();
-
         cartPage.openCart();
         cartPage.clickGoToCatalogFromEmptyCart();
-
-        Assertions.assertTrue(WebDriver.getDriver().getCurrentUrl().contains("/catalog/"),
-                "Не произошел переход на страницу каталога.");
+        Assertions.assertTrue(WebDriver.getDriver().getCurrentUrl().contains("/catalog/"));
     }
 }

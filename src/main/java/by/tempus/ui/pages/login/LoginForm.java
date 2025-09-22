@@ -84,6 +84,10 @@ public class LoginForm {
         return (String) js.executeScript("return arguments[0].validationMessage;", emailField);
     }
 
+    public String getIncorrectEmailError() {
+        return WebDriver.getTextFromElement(EMPTY_EMAIL_ERROR);
+    }
+
     public void fillLoginForm(String login, String password) {
         sendKeysLogin(login);
         sendKeysPassword(password);

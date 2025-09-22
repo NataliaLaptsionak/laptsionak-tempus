@@ -9,17 +9,17 @@ import java.time.Duration;
 public class CartPage {
 
     private final String HEADER_CART_ICON = "//a[@class='icons__action icons__action--cart']";
-    private final String HEADER_CATALOG_BUTTON = "//button[@class='header__catalog-btn']";
+    private final String CATALOG_BUTTON = "//button[@class=\"header__catalog-btn\"]";
     private final String CATEGORY_WOMEN = "//div[@class='text-container' and contains(., 'Женские')]";
     private final String PRODUCT_MICHAEL_KORS_MK7337 = "//a[@title='Michael Kors  Lennox MK7337']";
     private final String PRODUCT_MICHAEL_KORS_MK7325 = "//a[@title='Michael Kors Runway MK7325']";
-    private final String ADD_TO_CART_BUTTON = "//div[contains(@class, 'product-page-main__actions')]//div[normalize-space()='Добавить в корзину']";
+    private final String ADD_TO_CART_BUTTON = "//div[contains(@class=\"button is-primary is-cart \"')]//div[normalize-space()='Добавить в корзину']";
     private final String CLEAR_CART_BUTTON = "//button[@class='clear']";
     private final String ITEM_INCREASE_QUANTITY_BUTTON = "//div[@class='cart-item-counter__button is-plus']";
     private final String ITEM_DECREASE_QUANTITY_BUTTON = "//div[@class='cart-item-counter__button is-minus']";
     private final String CART_ITEMS_LIST = "//span[@class='icons__counter icons__counter--cart']";
     private final String ITEM_QUANTITY_INPUT = "//input[@class='cart-item-counter__field h6']";
-    private final String EMPTY_CART_MESSAGE = "//div[@class='empty-cart' and contains(., 'В вашей корзине пока ничего нет.')]";
+    private final String EMPTY_CART_MESSAGE = "//div[@class='empty-cart']";
     private final String GO_TO_CATALOG_BUTTON_FROM_EMPTY_CART = "//a[@class='catalog-button']";
     private final String FULL_NAME_INPUT = "//input[@id='ORDER_PROP_19']";
     private final String EMAIL_INPUT = "//input[@id='ORDER_PROP_20']";
@@ -31,7 +31,7 @@ public class CartPage {
     private final String EMPTY_PHONE_CART_ERROR_MESSAGE = "//font[normalize-space()='\"Телефон\": обязательно для заполнения']";
 
     public CartPage clickCatalogButton() {
-        WebDriver.clickElement(HEADER_CATALOG_BUTTON);
+        WebDriver.clickElement(CATALOG_BUTTON);
         return this;
     }
 
@@ -51,6 +51,9 @@ public class CartPage {
     }
 
     public CartPage clickAddToCart() {
+        WebDriverWait wait = new WebDriverWait(WebDriver.getDriver(), Duration.ofSeconds(15)); // Увеличил до 15 секунд на всякий случай
+        wait.until(ExpectedConditions.elementToBeClickable(By.id(ADD_TO_CART_BUTTON)));
+
         WebDriver.clickElement(ADD_TO_CART_BUTTON);
         return this;
     }
