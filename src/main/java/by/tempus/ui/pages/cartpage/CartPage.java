@@ -13,7 +13,8 @@ public class CartPage {
     private final String CATEGORY_WOMEN = "//div[@class='text-container' and contains(., 'Женские')]";
     private final String PRODUCT_MICHAEL_KORS_MK7337 = "//a[@title='Michael Kors  Lennox MK7337']";
     private final String PRODUCT_MICHAEL_KORS_MK7325 = "//a[@title='Michael Kors Runway MK7325']";
-    private final String ADD_TO_CART_BUTTON = "//div[contains(@class=\"button is-primary is-cart \"')]//div[normalize-space()='Добавить в корзину']";
+
+    private final String ADD_TO_CART_BUTTON = "//div[contains(@class, 'product-page-main__actions')]//div[normalize-space()='Добавить в корзину']";
     private final String CLEAR_CART_BUTTON = "//button[@class='clear']";
     private final String ITEM_INCREASE_QUANTITY_BUTTON = "//div[@class='cart-item-counter__button is-plus']";
     private final String ITEM_DECREASE_QUANTITY_BUTTON = "//div[@class='cart-item-counter__button is-minus']";

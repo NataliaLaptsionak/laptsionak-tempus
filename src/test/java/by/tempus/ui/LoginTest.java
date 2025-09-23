@@ -12,14 +12,13 @@ import org.junit.jupiter.api.Test;
 import by.tempus.resources.DataGenerator;
 
 public class LoginTest extends BaseTest {
-
     LoginForm loginForm = new LoginForm();
 
     @BeforeEach
     public void openHomePageClickButtonLogIn() {
         new HomePage()
                 .openSite()
-                .сlickButtonLogin();
+                .clickButtonLogin();
     }
 
 
@@ -69,7 +68,7 @@ public class LoginTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("Verification of error message for empty 'Email' field. Проверка сообщения об ошибке для обязательного поля 'Email' при пустом значении")
+    @DisplayName("Verification of error message for empty 'Email' field.")
     public void verifyErrorMessageForEmptyEmailField() {
         loginForm.fillLoginForm("", DataGenerator.generateValidPassword());
         loginForm.clickButtonLogin();
@@ -80,12 +79,11 @@ public class LoginTest extends BaseTest {
     @Test
     @DisplayName("Verify message for incorrect email format (missing part before '@')")
     public void invalidEmailFormatMissingPartBeforeAtTest() {
-        String invalidEmail = DataGenerator.generateInvalidEmailMissingPartBeforeAt(); // Измените на email, где отсутствует часть ДО '@'
+        String invalidEmail = DataGenerator.generateInvalidEmailMissingPartBeforeAt();
         loginForm.sendKeysLogin(invalidEmail);
         loginForm.sendKeysPassword(DataGenerator.generateValidPassword());
         loginForm.clickButtonLogin();
 
-        // Ожидаем сообщение об ошибке для отсутствия части ДО '@'
         String expected = String.format(LoginExpectedMessages.INVALID_EMAIL_FORMAT_ERROR_MISSING_PART_BEFORE_AT, invalidEmail);
         Assertions.assertEquals(expected, loginForm.getEmailValidationMessage());
     }

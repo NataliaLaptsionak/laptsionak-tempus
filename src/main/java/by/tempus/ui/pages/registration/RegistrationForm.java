@@ -8,15 +8,19 @@ public class RegistrationForm {
 
     private final String TAB_REGISTRATION = "//li[contains(@class, '')]//button[text()='Регистрация']";;
     private final String INPUT_REGISTRATION_FULL_NAME = "//input[@name=\"fullName\"]";
-    private final String INPUT_REGISTRATION_FULL_NAME_ERROR = "//label[@class=\"form-input is-required is-error\"]//span[@class=\"form-input__error-message\"]";
     private final String INPUT_REGISTRATION_EMAIL = "//form[@class=\"form registration__form js-validate-form\"]//input[@name=\"email\"]";
-    private final String INPUT_REGISTRATION_EMAIL_ERROR = "//label[@class=\"form-input is-required is-email is-error\"]//span[@class=\"form-input__error-message\"]";
     private final String INPUT_REGISTRATION_PHONE = "//input[@type=\"tel\"]";
-    private final String INPUT_REGISTRATION_PHONE_ERROR = "//label[@class=\"form-input is-required is-phone phone-input is-error\"]//span[@class=\"form-input__error-message\"]";
     private final String INPUT_REGISTRATION_PASSWORD = "//label[@class=\"form-input is-required is-password is-error\"]//input[@type=\"password\"]";
-    private final String INPUT_REGISTRATION_PASSWORD_ERROR = "//label[@class=\"form-input is-required is-password is-error\"]//span[@class=\"form-input__error-message\"]";
     private final String INPUT_REGISTRATION_REPEAT_PASSWORD = "//label[@class=\"form-input is-required is-confirm-password\"]//input[@type=\"password\"]";
-    private final String INPUT_REGISTRATION_REPEAT_PASSWORD_ERROR = "//label[@class=\"form-input is-required is-confirm-password is-error\"]//span[@class=\"form-input__error-message\"]";
+
+
+    private final String EMPTY_FULL_NAME_ERROR = "//label[@class=\"form-input is-required is-error\"]//span[@class=\"form-input__error-message\"]";
+    private final String EMPTY_EMAIL_ERROR = "//label[@class=\"form-input is-required is-email is-error\"]//span[@class=\"form-input__error-message\"]";
+    private final String INCORRECT_EMAIL_ERROR = "//span[@class=\"form-input__error-message\"]";
+
+    private final String EMPTY_PHONE_ERROR = "//label[@class=\"form-input is-required is-phone phone-input is-error\"]//span[@class=\"form-input__error-message\"]";
+    private final String EMPTY_PASSWORD_ERROR = "//label[@class=\"form-input is-required is-password is-error\"]//span[@class=\"form-input__error-message\"]";
+    private final String REGISTRATION_REPEAT_PASSWORD_ERROR = "//label[@class=\"form-input is-required is-confirm-password is-error\"]//span[@class=\"form-input__error-message\"]";
     private final String BUTTON_REGISTRATION = "//form[@class=\"form registration__form js-validate-form\"]//button[@type=\"submit\"]";
     private final String LABEL_FULL_NAME_FIELD_TEXT = "//form[@class=\"form registration__form js-validate-form\"]//label[@class=\"form-input is-required\"]//span[@class=\"form-input__placeholder\"]";
     private final String LABEL_EMAIL_FIELD_TEXT = "//form[@class=\"form registration__form js-validate-form\"]//label[@class=\"form-input is-required is-email\"]//span[@class=\"form-input__placeholder\"]";
@@ -53,8 +57,7 @@ public class RegistrationForm {
     }
 
     public void clickButtonRegistration() {
-        // Перед кликом, убедитесь, что элемент виден и к нему можно прокрутить
-        WebDriver.scrollToElement(BUTTON_REGISTRATION); // Добавляем скролл к кнопке
+        WebDriver.scrollToElement(BUTTON_REGISTRATION);
         WebDriver.clickElement(BUTTON_REGISTRATION);
     }
 
@@ -115,23 +118,28 @@ public class RegistrationForm {
 
     public String getRegistrationEmailError() {
 
-    return WebDriver.getTextFromElement(INPUT_REGISTRATION_EMAIL_ERROR);
+    return WebDriver.getTextFromElement(EMPTY_EMAIL_ERROR);
+    }
+
+    public String getIncorrectEmailError() {
+
+        return WebDriver.getTextFromElement(INCORRECT_EMAIL_ERROR);
     }
 
     public String getRegistrationFullNameError() {
-        return WebDriver.getTextFromElement(INPUT_REGISTRATION_FULL_NAME_ERROR);
+        return WebDriver.getTextFromElement(EMPTY_FULL_NAME_ERROR);
     }
 
     public String getRegistrationPasswordError() {
-        return WebDriver.getTextFromElement(INPUT_REGISTRATION_PASSWORD_ERROR);
+        return WebDriver.getTextFromElement(EMPTY_PASSWORD_ERROR);
     }
 
     public String getRegistrationRepeatPasswordError() {
-        return WebDriver.getTextFromElement(INPUT_REGISTRATION_REPEAT_PASSWORD_ERROR);
+        return WebDriver.getTextFromElement(REGISTRATION_REPEAT_PASSWORD_ERROR);
     }
 
     public String getRegistrationPhoneError() {
-        return WebDriver.getTextFromElement(INPUT_REGISTRATION_PHONE_ERROR);
+        return WebDriver.getTextFromElement(EMPTY_PHONE_ERROR);
     }
 
     public String getRegistrationEmailValidationMessage() {
@@ -139,6 +147,7 @@ public class RegistrationForm {
         WebElement emailField = WebDriver.findElement(INPUT_REGISTRATION_EMAIL);
         return (String) js.executeScript("return arguments[0].validationMessage;", emailField);
     }
+
 
     public void fillRegistrationForm(String fullName, String email, String phone, String password, String repeatPassword) {
         sendKeysFullName(fullName);

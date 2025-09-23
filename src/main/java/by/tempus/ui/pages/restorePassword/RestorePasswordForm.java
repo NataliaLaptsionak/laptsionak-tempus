@@ -12,8 +12,8 @@ public class RestorePasswordForm {
     private final String BUTTON_LOGIN = "//button[@class='button is-primary' and normalize-space()='Войти в аккаунт']";
     private final String LOGIN_FORM_TITLE = "//li[contains(@class, 'is-active')]//button[text()='Вход']";
     private final String TAB_REGISTRATION = "//li[contains(@class, '')]//button[text()='Регистрация']";;
-    private final String LABEL_EMAIL_FIELD_TEXT = "//label[@class=\"form-input is-required is-email\"]";
-    private final String INPUT_RESTORE_PASSWORD_EMAIL = "//label[@class=\"form-input is-required is-email\"]";
+    private final String LABEL_EMAIL_FIELD_TEXT = "//form[@class=\"form restore__form js-validate-form\"]//label[@class=\"form-input is-required is-email\"]";
+    private final String INPUT_RESTORE_PASSWORD_EMAIL = "//input[@type='email']";
     private final String RESTORE_PASSWORD_UNREGISTERED_EMAIL_ERROR = "//div[@class='success-popup__text']";
 
     public void clickButtonLogin() {
