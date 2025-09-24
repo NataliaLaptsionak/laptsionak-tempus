@@ -13,7 +13,7 @@ public class RestorePasswordForm {
     private final String LOGIN_FORM_TITLE = "//li[contains(@class, 'is-active')]//button[text()='Вход']";
     private final String TAB_REGISTRATION = "//li[contains(@class, '')]//button[text()='Регистрация']";;
     private final String LABEL_EMAIL_FIELD = "//form[@class=\"form restore__form js-validate-form\"]//label[@class=\"form-input is-required is-email\"]";
-    private final String INPUT_RESTORE_PASSWORD_EMAIL = "//input[normalize-space(@type) = 'email']";
+    private final String INPUT_RESTORE_PASSWORD_EMAIL = "(//input[@type=\"email\"])[3]";
     private final String RESTORE_PASSWORD_UNREGISTERED_EMAIL_ERROR = "//div[@class='success-popup__text']";
 
 

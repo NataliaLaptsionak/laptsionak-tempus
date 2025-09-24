@@ -13,7 +13,8 @@ public class CartPage {
     private final String CATEGORY_WOMEN = "//div[@class='text-container' and contains(., 'Женские')]";
     private final String PRODUCT_MICHAEL_KORS_MK7337 = "//a[@title='Michael Kors  Lennox MK7337']";
     private final String PRODUCT_MICHAEL_KORS_MK7325 = "//a[@title='Michael Kors Runway MK7325']";
-    private final String ADD_TO_CART_BUTTON = "(//div[text()[contains(.,'Добавить в корзину')]]) [2]";
+
+    private final String ADD_TO_CART_BUTTON = "(//div[@class=\"button is-primary is-cart \" and contains(., 'Добавить в корзину')])[3]";
     private final String CLEAR_CART_BUTTON = "//button[@class='clear']";
     private final String ITEM_INCREASE_QUANTITY_BUTTON = "//div[@class='cart-item-counter__button is-plus']";
     private final String ITEM_DECREASE_QUANTITY_BUTTON = "//div[@class='cart-item-counter__button is-minus']";
@@ -25,7 +26,6 @@ public class CartPage {
     private final String EMAIL_INPUT = "//input[@id='ORDER_PROP_20']";
     private final String PHONE_INPUT = "//input[@id='ORDER_PROP_21']";
     private final String CITY_MINSK_TAG = "//a[@class='quick-location-tag' and contains(., 'Минск')]";
-    private final String PAYMENT_CASH_RADIO = "//span[@class='order-variant-box__content' and contains(., 'Наличные')]";
     private final String PLACE_ORDER_BUTTON = "//a[contains(@class, 'order-page__final-button')]";
     private final String INCORRECT_EMAIL_CART_ERROR_MESSAGE = "//font[normalize-space()='Некорректный E-Mail']";
     private final String EMPTY_PHONE_CART_ERROR_MESSAGE = "//font[normalize-space()='\"Телефон\": обязательно для заполнения']";
@@ -51,9 +51,8 @@ public class CartPage {
     }
 
     public CartPage clickAddToCart() {
-        WebDriverWait wait = new WebDriverWait(WebDriver.getDriver(), Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.elementToBeClickable(By.id(ADD_TO_CART_BUTTON)));
-        WebDriver.scrollToElement(ADD_TO_CART_BUTTON);
+        WebDriverWait wait = new WebDriverWait(WebDriver.getDriver(), Duration.ofSeconds(15));
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(ADD_TO_CART_BUTTON)));
         WebDriver.clickElement(ADD_TO_CART_BUTTON);
         return this;
     }
@@ -87,11 +86,6 @@ public class CartPage {
 
     public CartPage selectCityMinsk() {
         WebDriver.clickElement(CITY_MINSK_TAG);
-        return this;
-    }
-
-    public CartPage selectPaymentByCash() {
-        WebDriver.clickElement(PAYMENT_CASH_RADIO);
         return this;
     }
 
