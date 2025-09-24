@@ -1,4 +1,4 @@
-package by.tempus.ui.pages;
+package by.tempus.ui.pages.searchPage;
 
 import by.tempus.webDriver.WebDriver;
 
@@ -24,7 +24,7 @@ public class SearchPage {
         clickSearchButton();
     }
 
-    public String getSpecificSearchResultText() {
+    public String getSpecificSearchResultText(String expectedText) {
         return WebDriver.getTextFromElement(TITLE_FULL_NAME_SEARCH_RESULT);
     }
 

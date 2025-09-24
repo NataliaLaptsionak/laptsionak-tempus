@@ -21,11 +21,11 @@ public class LoginTest {
         loginService = new LoginService();
         validLogin = DataGenerator.generateValidEmail();
         validPassword = DataGenerator.generateValidPassword();
-        invalidLogin = DataGenerator.generateInvalidEmail();
+        invalidLogin = DataGenerator.generateIncorrectEmail();
     }
 
     @Test
-    @DisplayName("Verify login with invalid credentials (API response). Such user doesn't exist. Неверные учетные данные или пользователь деактивирован\\заблокирован")
+    @DisplayName("Verify login with invalid credentials (API response). Such user doesn't exist.")
     public void testLoginWithInvalidCredentials() {
         loginService.doRequest(validLogin, validPassword);
         assertAll(
@@ -35,7 +35,7 @@ public class LoginTest {
     }
 
     @Test
-    @DisplayName("Verify login with empty email (API response). Не указан Email")
+    @DisplayName("Verify login with empty email (API response).")
     public void testLoginWithEmptyEmail() {
         loginService.doRequest("", validPassword);
         assertAll(
@@ -45,7 +45,7 @@ public class LoginTest {
     }
 
     @Test
-    @DisplayName("Verify login with empty password (API response). Не указан Пароль")
+    @DisplayName("Verify login with empty password (API response).")
     public void testLoginWithEmptyPassword() {
         loginService.doRequest(validLogin, "");
         assertAll(
@@ -55,7 +55,7 @@ public class LoginTest {
     }
 
     @Test
-    @DisplayName("Verify login with incorrect email format (API response). Некорректный Email")
+    @DisplayName("Verify login with incorrect email format (API response).")
     public void testLoginWithIncorrectEmailFormat() {
         loginService.doRequest(invalidLogin,validPassword);
         assertAll(
@@ -65,7 +65,7 @@ public class LoginTest {
     }
 
     @Test
-    @DisplayName("Verify login with empty email and password (API response). Не указан Email.")
+    @DisplayName("Verify login with empty email and password (API response).")
     public void testLoginWithEmptyEmailAndPassword() {
         loginService.doRequest("", "");
         assertAll(
@@ -73,16 +73,4 @@ public class LoginTest {
                 () -> assertEquals(ExpectedMessages.EMPTY_EMAIL_AND_PASSWORD, loginService.getErrorMessage(), "Incorrect error message for empty email and password")
         );
     }
-
-    //еще думаю региться или нет или оставить только негативные тесты
-//    @Test
-//    @DisplayName("Verify successful login (API response). Успешная авторизация")
-//    public void testSuccessfulLogin() {
-//
-//        loginService.doRequest("зарегиться", "зарегиться");
-//        assertAll(
-//                () -> assertEquals(200, loginService.getStatusCode(), "Expected status code is 200 for successful login"),
-//                () -> assertEquals(null, loginService.getErrorMessage(), "Error message should be null for successful login")
-//        );
-//    }
 }

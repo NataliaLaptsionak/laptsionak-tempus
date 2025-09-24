@@ -1,7 +1,7 @@
 package by.tempus.ui;
 
 import by.tempus.resources.DataGenerator;
-import by.tempus.ui.pages.HomePage;
+import by.tempus.ui.pages.homePage.HomePage;
 import by.tempus.ui.pages.registration.RegistrationExpectedMessages;
 import by.tempus.ui.pages.registration.RegistrationForm;
 import org.junit.jupiter.api.Assertions;
@@ -12,15 +12,17 @@ import org.junit.jupiter.api.Test;
 public class RegistrationTest extends BaseTest {
     private RegistrationForm registrationForm;
 
+
     @BeforeEach
-    public void openHomePageClickButtonLogIn() {
+    public void setupRegistrationForm() {
         new HomePage()
                 .openSite()
-                .сlickButtonLogin();
+                .clickButtonLogin()
+                .clickTabRegistration();
     }
 
     @Test
-    @DisplayName("Verification of the registration form title. Проверка заголовка на форме Регистрация")
+    @DisplayName("Verification of the registration form title.")
     public void verifyRegistrationFormTitle() {
         RegistrationForm registrationForm = new RegistrationForm();
         registrationForm.clickTabRegistration();
@@ -28,7 +30,7 @@ public class RegistrationTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("Verification of fields presence on the registration form. Проверка наличия элементов на форме Регистрация")
+    @DisplayName("Verification of fields presence on the registration form.")
     public void verifyLRegistrationFormFields() {
         RegistrationForm registrationForm = new RegistrationForm();
         registrationForm.clickTabRegistration();
@@ -43,84 +45,86 @@ public class RegistrationTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("Verification of error messages for empty required fields. Проверка сообщений об ошибках для обязательных полей при пустых значениях")
+    @DisplayName("Verification of error messages for empty required fields.")
     public void verifyErrorMessagesForEmptyRegistrationFields() {
         RegistrationForm registrationForm = new RegistrationForm();
         registrationForm.clickTabRegistration();
         registrationForm.clickButtonRegistration();
 
         Assertions.assertEquals(RegistrationExpectedMessages.EMPTY_FULL_NAME_ERROR, registrationForm.getRegistrationFullNameError());
-        Assertions.assertEquals(RegistrationExpectedMessages.EMPTY_EMAIL, registrationForm.getRegistrationEmailError());
-        Assertions.assertEquals(RegistrationExpectedMessages.EMPTY_PHONE, registrationForm.getRegistrationPhoneError());
-        Assertions.assertEquals(RegistrationExpectedMessages.EMPTY_PASSWORD, registrationForm.getRegistrationPasswordError());
-        Assertions.assertEquals(RegistrationExpectedMessages.EMPTY_CHECHBOX_ERROR, registrationForm.getAgreementCheckboxError());
+        Assertions.assertEquals(RegistrationExpectedMessages.EMPTY_EMAIL_ERROR, registrationForm.getRegistrationEmailError());
+        Assertions.assertEquals(RegistrationExpectedMessages.EMPTY_PHONE_ERROR, registrationForm.getRegistrationPhoneError());
+        Assertions.assertEquals(RegistrationExpectedMessages.EMPTY_PASSWORD_ERROR, registrationForm.getRegistrationPasswordError());
+        Assertions.assertEquals(RegistrationExpectedMessages.EMPTY_CHECKBOX_ERROR, registrationForm.getAgreementCheckboxError());
     }
 
     @Test
-    @DisplayName("Verification of error message for empty 'Full name' field. Проверка сообщения об ошибке для обязательного поля 'ФИО' при пустом значении")
+    @DisplayName("Verification of error message for empty 'Full name' field.")
     public void verifyErrorMessageForEmptyFullNameField() {
         RegistrationForm registrationForm = new RegistrationForm();
         registrationForm.clickTabRegistration();
+        registrationForm.clickButtonRegistration();
 
-        registrationForm.sendKeysEmail(DataGenerator.generateValidEmail());
-        registrationForm.sendKeysPhone(DataGenerator.generateValidBelarusianPhoneNumber());
-        registrationForm.sendKeysPassword(DataGenerator.generateValidPassword());
-        registrationForm.sendKeysRepeatPassword(DataGenerator.generateRepeatPassword());
+        registrationForm.fillRegistrationForm("", DataGenerator.generateValidEmail(), DataGenerator.generateValidBelarusianPhoneNumber(),DataGenerator.generateValidPassword(), DataGenerator.generateValidRepeatPassword());
         registrationForm.clickAgreementCheckbox();
         registrationForm.clickButtonRegistration();
-        Assertions.assertEquals(RegistrationExpectedMessages.EMPTY_FULL_NAME, registrationForm.getRegistrationFullNameError());
+        Assertions.assertEquals(RegistrationExpectedMessages.EMPTY_FULL_NAME_ERROR, registrationForm.getRegistrationFullNameError());
     }
 
     @Test
-    @DisplayName("Verification of error message for empty 'Email' field. Проверка сообщения об ошибке для обязательного поля 'Email' при пустом значении")
+    @DisplayName("Verification of error message for empty 'Email' field.")
     public void verifyErrorMessageForEmptyField() {
         RegistrationForm registrationForm = new RegistrationForm();
         registrationForm.clickTabRegistration();
+        registrationForm.clickButtonRegistration();
 
         registrationForm.sendKeysFullName(DataGenerator.generateValidFullName());
         registrationForm.sendKeysPhone(DataGenerator.generateValidBelarusianPhoneNumber());
         registrationForm.sendKeysPassword(DataGenerator.generateValidPassword());
-        registrationForm.sendKeysRepeatPassword(DataGenerator.generateRepeatPassword());
+        registrationForm.sendKeysRepeatPassword(DataGenerator.generateValidRepeatPassword());
         registrationForm.clickAgreementCheckbox();
         registrationForm.clickButtonRegistration();
-        Assertions.assertEquals(RegistrationExpectedMessages.EMPTY_EMAIL, registrationForm.getRegistrationEmailError());
+        Assertions.assertEquals(RegistrationExpectedMessages.EMPTY_EMAIL_ERROR, registrationForm.getRegistrationEmailError());
     }
 
     @Test
-    @DisplayName("Verification of error message for empty 'Phone' field. Проверка сообщения об ошибке для обязательного поля 'Телефон' при пустом значении")
+    @DisplayName("Verification of error message for empty 'Phone' field.")
     public void verifyErrorMessageForEmptyPhone() {
         RegistrationForm registrationForm = new RegistrationForm();
         registrationForm.clickTabRegistration();
+        registrationForm.clickButtonRegistration();
 
         registrationForm.sendKeysFullName(DataGenerator.generateValidFullName());
         registrationForm.sendKeysEmail(DataGenerator.generateValidEmail());
         registrationForm.sendKeysPassword(DataGenerator.generateValidPassword());
-        registrationForm.sendKeysRepeatPassword(DataGenerator.generateRepeatPassword());
+        registrationForm.sendKeysRepeatPassword(DataGenerator.generateValidRepeatPassword());
         registrationForm.clickAgreementCheckbox();
         registrationForm.clickButtonRegistration();
-        Assertions.assertEquals(RegistrationExpectedMessages.EMPTY_PHONE, registrationForm.getRegistrationPhoneError());
+        Assertions.assertEquals(RegistrationExpectedMessages.EMPTY_PHONE_ERROR, registrationForm.getRegistrationPhoneError());
     }
 
     @Test
-    @DisplayName("Verification of error message for empty 'Password' field. Проверка сообщения об ошибке для обязательного поля 'Пароль' при пустом значении")
+    @DisplayName("Verification of error message for empty 'Password' field.")
     public void verifyErrorMessageForEmptyPassword() {
         RegistrationForm registrationForm = new RegistrationForm();
         registrationForm.clickTabRegistration();
+        registrationForm.clickButtonRegistration();
 
         registrationForm.sendKeysFullName(DataGenerator.generateValidFullName());
         registrationForm.sendKeysEmail(DataGenerator.generateValidEmail());
         registrationForm.sendKeysPhone(DataGenerator.generateValidBelarusianPhoneNumber());
-        registrationForm.sendKeysRepeatPassword(DataGenerator.generateRepeatPassword());
+        registrationForm.sendKeysRepeatPassword(DataGenerator.generateValidRepeatPassword());
         registrationForm.clickAgreementCheckbox();
         registrationForm.clickButtonRegistration();
-        Assertions.assertEquals(RegistrationExpectedMessages.PASSWORD_LENGTH_RESTRICTION, registrationForm.getRegistrationPasswordError());
+        Assertions.assertEquals(RegistrationExpectedMessages.EMPTY_PASSWORD_ERROR, registrationForm.getRegistrationPasswordError());
     }
 
     @Test
-    @DisplayName("Verification of error message for empty 'Password' field. Проверка сообщения об ошибке для обязательного поля 'Повторить пароль' при пустом значении")
+    @DisplayName("Verification of error message for empty 'Repeat Password' field.")
     public void verifyErrorMessageForEmptyRepeatPassword() {
         RegistrationForm registrationForm = new RegistrationForm();
         registrationForm.clickTabRegistration();
+        registrationForm.clickButtonRegistration();
 
         registrationForm.sendKeysFullName(DataGenerator.generateValidFullName());
         registrationForm.sendKeysEmail(DataGenerator.generateValidEmail());
@@ -128,11 +132,11 @@ public class RegistrationTest extends BaseTest {
         registrationForm.sendKeysPassword(DataGenerator.generateValidPassword());
         registrationForm.clickAgreementCheckbox();
         registrationForm.clickButtonRegistration();
-        Assertions.assertEquals(RegistrationExpectedMessages.PASSWORD_LENGTH_RESTRICTION, registrationForm.getRegistrationRepeatPasswordError());
+        Assertions.assertEquals(RegistrationExpectedMessages.EMPTY_REPEAT_PASSWORD_ERROR, registrationForm.getRegistrationRepeatPasswordError());
     }
 
     @Test
-    @DisplayName("Verification of error message for empty 'Checkbox'. Проверка сообщения об ошибке при незаполнении чекбокса")
+    @DisplayName("Verification of error message for empty 'Checkbox'.")
     public void verifyErrorMessageForEmptyCheckbox() {
         RegistrationForm registrationForm = new RegistrationForm();
         registrationForm.clickTabRegistration();
@@ -144,33 +148,67 @@ public class RegistrationTest extends BaseTest {
         registrationForm.sendKeysPassword(DataGenerator.generateValidPassword());
         registrationForm.sendKeysRepeatPassword(DataGenerator.generateValidPassword());
         registrationForm.clickButtonRegistration();
-        Assertions.assertEquals(RegistrationExpectedMessages.AGREEMENT_CHECKBOX_LABEL, registrationForm.getAgreementCheckboxError());
+        Assertions.assertEquals(RegistrationExpectedMessages.EMPTY_CHECKBOX_ERROR, registrationForm.getAgreementCheckboxError());
     }
 
     @Test
-    @DisplayName("Verification of error message for invalid Email format. Проверка сообщения об ошибке для невалидного формата Email")
-    public void invalidEmailFormatTest() {
+    @DisplayName("Verify message for incorrect email format (missing part before '@')")
+    public void invalidEmailFormatMissingPartBeforeAtTest() {
         RegistrationForm registrationForm = new RegistrationForm();
         registrationForm.clickTabRegistration();
+        registrationForm.clickButtonRegistration();
+
+        String invalidEmail = DataGenerator.generateInvalidEmailMissingPartBeforeAt();
+        registrationForm.sendKeysEmail(invalidEmail);
+        registrationForm.clickButtonRegistration();
+
+        String expected = String.format(RegistrationExpectedMessages.INVALID_EMAIL_FORMAT_ERROR_MISSING_PART_BEFORE_AT, invalidEmail);
+        Assertions.assertEquals(expected, registrationForm.getRegistrationEmailValidationMessage());
+    }
+
+    @Test
+    @DisplayName("Verify message for incorrect email format (missing part after '@')")
+    public void invalidEmailFormatMissingPartAfterAtTest() {
+        RegistrationForm registrationForm = new RegistrationForm();
+        registrationForm.clickTabRegistration();
+
+        String invalidEmail = DataGenerator.generateInvalidEmailMissingPartAfterAt();
+        registrationForm.sendKeysEmail(invalidEmail);
+        registrationForm.clickButtonRegistration();
+
+        String expected = String.format(RegistrationExpectedMessages.INVALID_EMAIL_FORMAT_ERROR_MISSING_PART_AFTER_AT, invalidEmail);
+        Assertions.assertEquals(expected, registrationForm.getRegistrationEmailValidationMessage());
+    }
+
+    @Test
+    @DisplayName("Verify message for incorrect email address (e.g., '1@rtty')")
+    public void incorrectEmailAddressTest() {
+        RegistrationForm registrationForm = new RegistrationForm();
+        registrationForm.clickTabRegistration();
+        registrationForm.clickButtonRegistration();
 
         registrationForm.sendKeysFullName(DataGenerator.generateValidFullName());
-        registrationForm.sendKeysEmail(DataGenerator.generateInvalidEmail());
+        registrationForm.sendKeysEmail(DataGenerator.generateIncorrectEmail());
         registrationForm.sendKeysPhone(DataGenerator.generateValidBelarusianPhoneNumber());
         registrationForm.sendKeysPassword(DataGenerator.generateValidPassword());
-        registrationForm.sendKeysRepeatPassword(DataGenerator.generateValidPassword());
-        registrationForm.clickAgreementCheckbox();
+        registrationForm.sendKeysRepeatPassword(DataGenerator.generateValidRepeatPassword());
         registrationForm.clickButtonRegistration();
-        Assertions.assertEquals(RegistrationExpectedMessages.INVALID_EMAIL_FORMAT, registrationForm.getRegistrationEmailValidationMessage());
+
+        Assertions.assertEquals(RegistrationExpectedMessages.INCORRECT_EMAIL_ERROR, registrationForm.getIncorrectEmailError());
     }
 
 
     @Test
-    @DisplayName("Verification of redirection to restore password form. Проверка перехода в форму восстановления пароля")
-    public void LoginFormRedirectionTest() {
+    @DisplayName("Verify message for incorrect email format (missing '@')")
+    public void invalidEmailFormatMissingAtTest() {
         RegistrationForm registrationForm = new RegistrationForm();
         registrationForm.clickTabRegistration();
-        registrationForm.clickLoginFormTitle();
 
-        Assertions.assertEquals(RegistrationExpectedMessages.LOGIN_FORM_TITLE, registrationForm.getLoginFormTitleText());
+        String invalidEmail = DataGenerator.generateInvalidEmailMissingAt();
+        registrationForm.sendKeysEmail(invalidEmail);
+        registrationForm.clickButtonRegistration();
+
+        String expected = String.format(RegistrationExpectedMessages.INVALID_EMAIL_FORMAT_ERROR_MISSING_AT, invalidEmail);
+        Assertions.assertEquals(expected, registrationForm.getRegistrationEmailValidationMessage());
     }
 }

@@ -1,59 +1,25 @@
 package by.tempus.ui.pages.registration;
 
 public class RegistrationExpectedMessages {
-    public static final String INVALID_CREDENTIALS = "Неверные учетные данные или пользователь деактивирован\\заблокирован";
-    public static final String EMPTY_EMAIL = "Не указан Email";
-    public static final String EMPTY_PASSWORD = "Не указан Пароль";
-    public static final String INVALID_EMAIL_FORMAT = "Некорректный email";
-    public static final String EMPTY_EMAIL_AND_PASSWORD = "Не указан Email";
-
-    public static final String EMPTY_FULL_NAME = "Не указано ФИО";
-    public static final String INVALID_PHONE_NUMBER = "Некорректный номер телефона";
-    public static final String EMPTY_PHONE = "Не указан Номер телефона";
-    public static final String INCORRECT_REPEAT_PASSWORD = "Некорректное подтверждение пароля";
-    public static final String PASSWORD_LENGTH_RESTRICTION = "Пароль должен  быть не менее 6 символов длиной.";
-
-    public static final String REGISTRATION_WITH_EXISTING_PHONE = "Указанный номер телефона используется другим пользователем";
-    public static final String REGISTRATION_WITH_EXISTING_EMAIL = "Указанный email используется другим пользователем";
 
     public static final String REGISTRATION_TAB_TITLE = "Регистрация";
+    public static final String FULL_NAME_FIELD_LABEL = "ФИО";
     public static final String EMAIL_FIELD_LABEL = "Email";
+    public static final String PHONE_FIELD_LABEL = "Телефон";
     public static final String PASSWORD_FIELD_LABEL = "Пароль";
-    public static final String REPEAT_PASSWORD_FIELD_LABEL = "Повторите пароль";
-    public static final String PHONE_FIELD_LABEL = "Повторите пароль";
-    public static final String FULL_NAME_FIELD_LABEL = "Повторите пароль";
-    public static final String AGREEMENT_CHECKBOX_LABEL = "Повторите пароль";
+    public static final String REPEAT_PASSWORD_FIELD_LABEL = "Повторить пароль";
+    public static final String AGREEMENT_CHECKBOX_LABEL = "Я согласен с условиями оферты и политикой конфиденциальности.";
     public static final String REGISTRATION_BUTTON_TEXT = "Регистрация";
+
     public static final String EMPTY_FULL_NAME_ERROR = "Это поле обязательно для заполнения.";
-    public static final String EMPTY_CHECHBOX_ERROR = "Это поле обязательно для заполнения.";
-    public static final String LOGIN_FORM_TITLE = "Вход";
+    public static final String EMPTY_EMAIL_ERROR = "Это поле обязательно для заполнения.";
+    public static final String EMPTY_PHONE_ERROR = "Некорректный номер телефона.";
+    public static final String EMPTY_PASSWORD_ERROR = "Это поле обязательно для заполнения.";
+    public static final String EMPTY_CHECKBOX_ERROR = "Это поле обязательно для заполнения.";
+    public static final String EMPTY_REPEAT_PASSWORD_ERROR = "Пароли не совпадают.";
 
-    private final String TAB_REGISTRATION = "//li[contains(@class, '')]//button[text()='Регистрация']";;
-    private final String INPUT_REGISTRATION_FULL_NAME = "//input[@name=\"fullName\"]";
-    private final String INPUT_REGISTRATION_FULL_NAME_ERROR = "//label[@class=\"form-input is-required is-error\"]//span[@class=\"form-input__error-message\"]";
-
-    private final String INPUT_REGISTRATION_EMAIL = "//form[@class=\"form registration__form js-validate-form\"]//input[@name=\"email\"]";
-    private final String INPUT_REGISTRATION_EMAIL_ERROR = "//label[@class=\"form-input is-required is-email is-error\"]//span[@class=\"form-input__error-message\"]";
-
-    private final String INPUT_REGISTRATION_PHONE = "//input[@type=\"tel\"]";
-    private final String INPUT_REGISTRATION_PHONE_ERROR = "//label[@class=\"form-input is-required is-phone phone-input is-error\"]//span[@class=\"form-input__error-message\"]";
-
-    private final String INPUT_REGISTRATION_PASSWORD = "//label[@class=\"form-input is-required is-password is-error\"]//input[@type=\"password\"]";
-    private final String INPUT_REGISTRATION_PASSWORD_ERROR = "//label[@class=\"form-input is-required is-password is-error\"]//span[@class=\"form-input__error-message\"]";
-
-    private final String INPUT_REGISTRATION_REPEAT_PASSWORD = "//label[@class=\"form-input is-required is-confirm-password\"]//input[@type=\"password\"]";
-    private final String INPUT_REGISTRATION_REPEAT_PASSWORD_ERROR = "//label[@class=\"form-input is-required is-confirm-password is-error\"]//span[@class=\"form-input__error-message\"]";
-
-    private final String BUTTON_REGISTRATION = "//form[@class=\"form registration__form js-validate-form\"]//button[@type=\"submit\"]";
-
-    private final String LABEL_FULL_NAME_FIELD_TEXT = "//form[@class=\"form registration__form js-validate-form\"]//label[@class=\"form-input is-required\"]//span[@class=\"form-input__placeholder\"]";
-    private final String LABEL_EMAIL_FIELD_TEXT = "//form[@class=\"form registration__form js-validate-form\"]//label[@class=\"form-input is-required is-email\"]//span[@class=\"form-input__placeholder\"]";
-    private final String LABEL_PHONE_FIELD_TEXT = "//form[@class=\"form registration__form js-validate-form\"]//label[@class=\"form-input is-required is-phone phone-input\"]//span[@class=\"form-input__placeholder\"]";
-    private final String LABEL_PASSWORD_FIELD_TEXT = "//form[@class=\"form registration__form js-validate-form\"]//label[@class=\"form-input is-required is-password\"]//span[@class=\"form-input__placeholder\"]";
-    private final String LABEL_REPEAT_PASSWORD_FIELD_TEXT = "//label[@class=\"form-input is-required is-confirm-password\"]//span[@class=\"form-input__placeholder\"]";
-
-    private final String AGREEMENT_CHECKBOX = "//span[@class=\"checkbox-input__check\"]";
-    private final String AGREEMENT_CHECKBOX_ERROR = "//div[@class=\"form__agreement\"]//span[@class=\"form-input__error-message\"]";
-    private final String AGREEMENT_CHECKBOX_TEXT = "//form[@class=\"form registration__form js-validate-form\"]//span[@class=\"agreement__text\"]";
-    private final String LOGIN_FORM_TITLE = "//button[contains(@class, 'tabs_btn-action') and text()='Вход']";
+    public static final String INVALID_EMAIL_FORMAT_ERROR_MISSING_AT = "Адрес электронной почты должен содержать символ \"@\". В адресе \"%s\" отсутствует символ \"@\".";
+    public static final String INVALID_EMAIL_FORMAT_ERROR_MISSING_PART_BEFORE_AT = "Введите часть адреса до символа \"@\". Адрес \"%s\" неполный.";
+    public static final String INVALID_EMAIL_FORMAT_ERROR_MISSING_PART_AFTER_AT = "Введите часть адреса после символа \"@\". Адрес \"%s\" неполный.";
+    public static final String INCORRECT_EMAIL_ERROR = "Некорректный email адрес.";
 }

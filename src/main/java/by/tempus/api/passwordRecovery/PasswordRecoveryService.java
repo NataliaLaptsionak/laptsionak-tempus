@@ -1,9 +1,6 @@
 package by.tempus.api.passwordRecovery;
 
 import io.restassured.response.Response;
-import io.restassured.RestAssured;
-import io.restassured.specification.RequestSpecification;
-
 import java.util.HashMap;
 import java.util.Map;
 

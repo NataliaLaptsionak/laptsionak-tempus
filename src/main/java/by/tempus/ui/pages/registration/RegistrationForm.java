@@ -8,35 +8,29 @@ public class RegistrationForm {
 
     private final String TAB_REGISTRATION = "//li[contains(@class, '')]//button[text()='Регистрация']";;
     private final String INPUT_REGISTRATION_FULL_NAME = "//input[@name=\"fullName\"]";
-    private final String INPUT_REGISTRATION_FULL_NAME_ERROR = "//label[@class=\"form-input is-required is-error\"]//span[@class=\"form-input__error-message\"]";
-
     private final String INPUT_REGISTRATION_EMAIL = "//form[@class=\"form registration__form js-validate-form\"]//input[@name=\"email\"]";
-    private final String INPUT_REGISTRATION_EMAIL_ERROR = "//label[@class=\"form-input is-required is-email is-error\"]//span[@class=\"form-input__error-message\"]";
-
     private final String INPUT_REGISTRATION_PHONE = "//input[@type=\"tel\"]";
-    private final String INPUT_REGISTRATION_PHONE_ERROR = "//label[@class=\"form-input is-required is-phone phone-input is-error\"]//span[@class=\"form-input__error-message\"]";
-
     private final String INPUT_REGISTRATION_PASSWORD = "//label[@class=\"form-input is-required is-password is-error\"]//input[@type=\"password\"]";
-    private final String INPUT_REGISTRATION_PASSWORD_ERROR = "//label[@class=\"form-input is-required is-password is-error\"]//span[@class=\"form-input__error-message\"]";
-
     private final String INPUT_REGISTRATION_REPEAT_PASSWORD = "//label[@class=\"form-input is-required is-confirm-password\"]//input[@type=\"password\"]";
-    private final String INPUT_REGISTRATION_REPEAT_PASSWORD_ERROR = "//label[@class=\"form-input is-required is-confirm-password is-error\"]//span[@class=\"form-input__error-message\"]";
 
+
+    private final String EMPTY_FULL_NAME_ERROR = "//label[@class=\"form-input is-required is-error\"]//span[@class=\"form-input__error-message\"]";
+    private final String EMPTY_EMAIL_ERROR = "//label[@class=\"form-input is-required is-email is-error\"]//span[@class=\"form-input__error-message\"]";
+    private final String INCORRECT_EMAIL_ERROR = "//span[@class=\"form-input__error-message\"]";
+    private final String EMPTY_PHONE_ERROR = "//label[@class=\"form-input is-required is-phone phone-input is-error\"]//span[@class=\"form-input__error-message\"]";
+    private final String EMPTY_PASSWORD_ERROR = "//label[@class=\"form-input is-required is-password is-error\"]//span[@class=\"form-input__error-message\"]";
+    private final String REGISTRATION_REPEAT_PASSWORD_ERROR = "//label[@class=\"form-input is-required is-confirm-password is-error\"]//span[@class=\"form-input__error-message\"]";
     private final String BUTTON_REGISTRATION = "//form[@class=\"form registration__form js-validate-form\"]//button[@type=\"submit\"]";
-
     private final String LABEL_FULL_NAME_FIELD_TEXT = "//form[@class=\"form registration__form js-validate-form\"]//label[@class=\"form-input is-required\"]//span[@class=\"form-input__placeholder\"]";
     private final String LABEL_EMAIL_FIELD_TEXT = "//form[@class=\"form registration__form js-validate-form\"]//label[@class=\"form-input is-required is-email\"]//span[@class=\"form-input__placeholder\"]";
     private final String LABEL_PHONE_FIELD_TEXT = "//form[@class=\"form registration__form js-validate-form\"]//label[@class=\"form-input is-required is-phone phone-input\"]//span[@class=\"form-input__placeholder\"]";
     private final String LABEL_PASSWORD_FIELD_TEXT = "//form[@class=\"form registration__form js-validate-form\"]//label[@class=\"form-input is-required is-password\"]//span[@class=\"form-input__placeholder\"]";
     private final String LABEL_REPEAT_PASSWORD_FIELD_TEXT = "//label[@class=\"form-input is-required is-confirm-password\"]//span[@class=\"form-input__placeholder\"]";
+    private final String AGREEMENT_CHECKBOX = "//span[@class=\"checkbox-input__check\"]";
+    private final String AGREEMENT_CHECKBOX_ERROR = "//div[@class=\"form__agreement\"]//span[@class=\"form-input__error-message\"]";
+    private final String AGREEMENT_CHECKBOX_TEXT = "//form[@class=\"form registration__form js-validate-form\"]//span[@class=\"agreement__text\"]";
 
-private final String AGREEMENT_CHECKBOX = "//span[@class=\"checkbox-input__check\"]";
-private final String AGREEMENT_CHECKBOX_ERROR = "//div[@class=\"form__agreement\"]//span[@class=\"form-input__error-message\"]";
-private final String AGREEMENT_CHECKBOX_TEXT = "//form[@class=\"form registration__form js-validate-form\"]//span[@class=\"agreement__text\"]";
-    private final String LOGIN_FORM_TITLE = "//button[contains(@class, 'tabs_btn-action') and text()='Вход']";
-
-
-public RegistrationForm() {
+    public RegistrationForm() {
     }
 
     public String getTitleRegistrationTab() {
@@ -47,25 +41,12 @@ public RegistrationForm() {
         WebDriver.clickElement(TAB_REGISTRATION);
     }
 
-    public void clickLoginFormTitle() {
-        WebDriver.clickElement(LOGIN_FORM_TITLE);
-    }
-
-    public String getLoginFormTitleText() {
-        return WebDriver.getTextFromElement(LOGIN_FORM_TITLE);
-    }
-
     public String getButtonRegistrationText() {
     return WebDriver.getTextFromElement(BUTTON_REGISTRATION);
     }
 
-//    public void clickButtonRegistration() {
-//    WebDriver.clickElement(BUTTON_REGISTRATION);
-//    }
-
     public void clickButtonRegistration() {
-        // Перед кликом, убедитесь, что элемент виден и к нему можно прокрутить
-        WebDriver.scrollToElement(BUTTON_REGISTRATION); // Добавляем скролл к кнопке
+        WebDriver.scrollToElement(BUTTON_REGISTRATION);
         WebDriver.clickElement(BUTTON_REGISTRATION);
     }
 
@@ -126,23 +107,28 @@ public RegistrationForm() {
 
     public String getRegistrationEmailError() {
 
-    return WebDriver.getTextFromElement(INPUT_REGISTRATION_EMAIL_ERROR);
+    return WebDriver.getTextFromElement(EMPTY_EMAIL_ERROR);
+    }
+
+    public String getIncorrectEmailError() {
+
+        return WebDriver.getTextFromElement(INCORRECT_EMAIL_ERROR);
     }
 
     public String getRegistrationFullNameError() {
-        return WebDriver.getTextFromElement(INPUT_REGISTRATION_FULL_NAME_ERROR);
+        return WebDriver.getTextFromElement(EMPTY_FULL_NAME_ERROR);
     }
 
     public String getRegistrationPasswordError() {
-        return WebDriver.getTextFromElement(INPUT_REGISTRATION_PASSWORD_ERROR);
+        return WebDriver.getTextFromElement(EMPTY_PASSWORD_ERROR);
     }
 
     public String getRegistrationRepeatPasswordError() {
-        return WebDriver.getTextFromElement(INPUT_REGISTRATION_REPEAT_PASSWORD_ERROR);
+        return WebDriver.getTextFromElement(REGISTRATION_REPEAT_PASSWORD_ERROR);
     }
 
     public String getRegistrationPhoneError() {
-        return WebDriver.getTextFromElement(INPUT_REGISTRATION_PHONE_ERROR);
+        return WebDriver.getTextFromElement(EMPTY_PHONE_ERROR);
     }
 
     public String getRegistrationEmailValidationMessage() {
@@ -163,5 +149,4 @@ public RegistrationForm() {
 
     public void clickAgreementCheckBox() {
         WebDriver.clickElement(AGREEMENT_CHECKBOX);     }
-
 }

@@ -2,14 +2,13 @@ package by.tempus.api.registration;
 import io.restassured.response.Response;
 import java.util.HashMap;
 import java.util.Map;
-
 import static io.restassured.RestAssured.given;
 
 public class RegistrationService {
-    private String URL = "https://tempus.by/bitrix/services/main/ajax.php";
     private Response response;
 
     public void doRegistrationRequest(String fullName, String email, String phone, String password, String passwordRepeat) {
+        String URL = "https://tempus.by/bitrix/services/main/ajax.php";
         response = given()
                 .queryParams(getQueryParams())
                 .formParams(getFormParams(fullName, email, phone, password, passwordRepeat))

@@ -1,3 +1,4 @@
+
 // На основании PasswordRecoveryApiTest создавался PasswordRecoveryTest (PasswordRecoveryApiTest позже класс будет удален)
 package by.tempus.api;
 
