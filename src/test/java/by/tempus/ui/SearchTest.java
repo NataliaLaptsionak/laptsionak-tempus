@@ -21,7 +21,7 @@ public class SearchTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("Checking that search results are partially relevant to the partial name.")
+    @DisplayName("Checking that search results are fully relevant to the partial name.")
     public void validFullSearchTest() {
         String searchQuery = "Emporio Armani Sports AR2460";
         searchPage.searchFor(searchQuery);
@@ -39,7 +39,7 @@ public class SearchTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("Checking message when searching for a non-existent query. Проверка сообщения при поиске по несуществующему запросу")
+    @DisplayName("Checking message when searching for a non-existent query.")
     public void invalidSearchTest() {
         String incorrectSearchQuery = "someinvalidquerry12345";
         searchPage.searchFor(incorrectSearchQuery);
