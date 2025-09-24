@@ -3,10 +3,9 @@ package by.tempus.ui.pages.homePage;
 import by.tempus.webDriver.WebDriver;
 
 public class HomePage {
-    private String URL = "https://tempus.by/";
-    private String BUTTON_LOGIN = "//button[contains(@class, 'icons__action--account') and contains(@class, 'j-sidePanel')]";
-    private String TAB_REGISTRATION = "//li[contains(@class, '')]//button[text()='Регистрация']";
-    private final String LINK_RESTORE_PASSWORD = "//button[@class='form__action j-tabBtnHandle']";
+    private final String URL = "https://tempus.by/";
+    private final String BUTTON_LOGIN = "//button[contains(@class, 'icons__action--account') and contains(@class, 'j-sidePanel')]";
+    private final String TAB_REGISTRATION = "//li[contains(@class, '')]//button[text()='Регистрация']";
 
     private org.openqa.selenium.WebDriver driver;
 

@@ -27,7 +27,7 @@ public class RegistrationTest {
     }
 
     @Test
-    @DisplayName("Verify user registration with empty full name (API response). Не указано ФИО")
+    @DisplayName("Verify user registration with empty full name (API response).")
     public void testUserRegistrationWithEmptyFullName() {
         registrationService.doRegistrationRequest("", email,phone, password, password);
         assertAll(
@@ -37,7 +37,7 @@ public class RegistrationTest {
     }
 
     @Test
-    @DisplayName("Verify registration with existing email (API response). Указанный email используется другим пользователем")
+    @DisplayName("Verify registration with existing email (API response).")
     public void testUserRegistrationWithExistingEmail() {
         String existingEmail = DataGenerator.generateValidEmail();
         registrationService.doRegistrationRequest(DataGenerator.generateValidFullName(), existingEmail, phone, password, password);
@@ -52,7 +52,7 @@ public class RegistrationTest {
     }
 
     @Test
-    @DisplayName("Verify registration with empty email (API response). Не указан Email")
+    @DisplayName("Verify registration with empty email (API response). ")
     public void testUserRegistrationWithEmptyEmail() {
         registrationService.doRegistrationRequest(fullName, "", phone, password, password);
         assertAll(
@@ -62,7 +62,7 @@ public class RegistrationTest {
     }
 
     @Test
-    @DisplayName("Verify registration with incorrect phone number (API response). Некорректный номер телефона")
+    @DisplayName("Verify registration with incorrect phone number (API response).")
     public void testIncorrectPhoneNumber() {
         registrationService.doRegistrationRequest(fullName, email, DataGenerator.generateInvalidBelarusianPhoneNumber(), password, password);
         assertAll(
@@ -72,7 +72,7 @@ public class RegistrationTest {
     }
 
     @Test
-    @DisplayName("Verify user registration with existing phone number (API response). Указанный номер телефона используется другим пользователем")
+    @DisplayName("Verify user registration with existing phone number (API response).")
     public void testUserRegistrationWithExistingPhone() {
         String existingPhone = DataGenerator.generateValidBelarusianPhoneNumber();
         registrationService.doRegistrationRequest(fullName, email, existingPhone, password, password);
@@ -87,7 +87,7 @@ public class RegistrationTest {
     }
 
     @Test
-    @DisplayName("Verify user registration with empty phone number (API response). Не указан Номер телефона")
+    @DisplayName("Verify user registration with empty phone number (API response).")
     public void testUserRegistrationWithEmptyPhone() {
         registrationService.doRegistrationRequest(fullName, email, "", password, password);
         assertAll(
@@ -97,7 +97,7 @@ public class RegistrationTest {
     }
 
     @Test
-    @DisplayName("Verify user registration with empty password (API response). Не указан Пароль")
+    @DisplayName("Verify user registration with empty password (API response).")
     public void testUserRegistrationWithEmptyPassword() {
         registrationService.doRegistrationRequest(fullName, email, phone, "", "");
         assertAll(
@@ -107,7 +107,7 @@ public class RegistrationTest {
     }
 
     @Test
-    @DisplayName("Verify user registration with empty repeat password (API response). Некорректное подтверждение пароля")
+    @DisplayName("Verify user registration with empty repeat password (API response).")
     public void testUserRegistrationWithEmptyRepeatPassword() {
         registrationService.doRegistrationRequest(fullName, email, phone, password, DataGenerator.generateInvalidRepeatPassword());
         assertAll(
@@ -117,7 +117,7 @@ public class RegistrationTest {
     }
 
     @Test
-    @DisplayName("Verify user registration with restriction of the password length (API response). Пароль должен быть не менее 6 символов длиной")
+    @DisplayName("Verify user registration with restriction of the password length (API response).")
     public void testUserRegistrationWithPasswordLengthRestriction() {
         registrationService.doRegistrationRequest(fullName, email, phone, DataGenerator.generateInvalidPassword(), DataGenerator.generateInvalidPassword());
         assertAll(

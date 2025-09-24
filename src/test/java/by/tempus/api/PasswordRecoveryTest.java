@@ -5,7 +5,6 @@ import by.tempus.resources.DataGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -23,7 +22,7 @@ public class PasswordRecoveryTest {
     }
 
     @Test
-    @DisplayName("Verify password recovery with empty email (API response). Не указан Email!")
+    @DisplayName("Verify password recovery with empty email (API response).")
     public void testPasswordRecoveryEmptyEmail() {
         passwordRecoveryService.doRequest("");
         assertAll(
@@ -33,7 +32,7 @@ public class PasswordRecoveryTest {
     }
 
     @Test
-    @DisplayName("Verify password recovery with invalid email format (API response). Некорректный Email!")
+    @DisplayName("Verify password recovery with invalid email format (API response).")
     public void testPasswordRecoveryInvalidEmailFormat() {
         passwordRecoveryService.doRequest(invalidEmail);
         assertAll(
@@ -43,7 +42,7 @@ public class PasswordRecoveryTest {
     }
 
     @Test
-    @DisplayName("Verify restore password with unregistered email (API response). Неверные учетные данные или пользователь деактивирован\\заблокирован\"")
+    @DisplayName("Verify restore password with unregistered email (API response).")
     public void testPasswordRecoveryNonExistentEmail() {
         passwordRecoveryService.doRequest(validEmail);
         assertAll(

@@ -65,10 +65,7 @@ public class RegistrationTest extends BaseTest {
         registrationForm.clickTabRegistration();
         registrationForm.clickButtonRegistration();
 
-        registrationForm.sendKeysEmail(DataGenerator.generateValidEmail());
-        registrationForm.sendKeysPhone(DataGenerator.generateValidBelarusianPhoneNumber());
-        registrationForm.sendKeysPassword(DataGenerator.generateValidPassword());
-        registrationForm.sendKeysRepeatPassword(DataGenerator.generateValidRepeatPassword());
+        registrationForm.fillRegistrationForm("", DataGenerator.generateValidEmail(), DataGenerator.generateValidBelarusianPhoneNumber(),DataGenerator.generateValidPassword(), DataGenerator.generateValidRepeatPassword());
         registrationForm.clickAgreementCheckbox();
         registrationForm.clickButtonRegistration();
         Assertions.assertEquals(RegistrationExpectedMessages.EMPTY_FULL_NAME_ERROR, registrationForm.getRegistrationFullNameError());

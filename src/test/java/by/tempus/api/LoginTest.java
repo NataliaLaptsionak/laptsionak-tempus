@@ -25,7 +25,7 @@ public class LoginTest {
     }
 
     @Test
-    @DisplayName("Verify login with invalid credentials (API response). Such user doesn't exist. Неверные учетные данные или пользователь деактивирован\\заблокирован")
+    @DisplayName("Verify login with invalid credentials (API response). Such user doesn't exist.")
     public void testLoginWithInvalidCredentials() {
         loginService.doRequest(validLogin, validPassword);
         assertAll(
@@ -35,7 +35,7 @@ public class LoginTest {
     }
 
     @Test
-    @DisplayName("Verify login with empty email (API response). Не указан Email")
+    @DisplayName("Verify login with empty email (API response).")
     public void testLoginWithEmptyEmail() {
         loginService.doRequest("", validPassword);
         assertAll(
@@ -45,7 +45,7 @@ public class LoginTest {
     }
 
     @Test
-    @DisplayName("Verify login with empty password (API response). Не указан Пароль")
+    @DisplayName("Verify login with empty password (API response).")
     public void testLoginWithEmptyPassword() {
         loginService.doRequest(validLogin, "");
         assertAll(
@@ -55,7 +55,7 @@ public class LoginTest {
     }
 
     @Test
-    @DisplayName("Verify login with incorrect email format (API response). Некорректный Email")
+    @DisplayName("Verify login with incorrect email format (API response).")
     public void testLoginWithIncorrectEmailFormat() {
         loginService.doRequest(invalidLogin,validPassword);
         assertAll(
@@ -65,7 +65,7 @@ public class LoginTest {
     }
 
     @Test
-    @DisplayName("Verify login with empty email and password (API response). Не указан Email.")
+    @DisplayName("Verify login with empty email and password (API response).")
     public void testLoginWithEmptyEmailAndPassword() {
         loginService.doRequest("", "");
         assertAll(

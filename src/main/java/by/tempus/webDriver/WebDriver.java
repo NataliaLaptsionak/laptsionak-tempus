@@ -9,7 +9,7 @@ import java.time.Duration;
 
 public class WebDriver {
     private static org.openqa.selenium.WebDriver driver;
-    private static WebDriverWait wait;
+    public static WebDriverWait wait;
 
     public static org.openqa.selenium.WebDriver getDriver() {
         if (driver == null) {

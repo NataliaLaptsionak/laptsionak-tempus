@@ -13,8 +13,7 @@ public class CartPage {
     private final String CATEGORY_WOMEN = "//div[@class='text-container' and contains(., 'Женские')]";
     private final String PRODUCT_MICHAEL_KORS_MK7337 = "//a[@title='Michael Kors  Lennox MK7337']";
     private final String PRODUCT_MICHAEL_KORS_MK7325 = "//a[@title='Michael Kors Runway MK7325']";
-
-    private final String ADD_TO_CART_BUTTON = "//div[contains(@class, 'product-page-main__actions')]//div[normalize-space()='Добавить в корзину']";
+    private final String ADD_TO_CART_BUTTON = "(//div[text()[contains(.,'Добавить в корзину')]]) [2]";
     private final String CLEAR_CART_BUTTON = "//button[@class='clear']";
     private final String ITEM_INCREASE_QUANTITY_BUTTON = "//div[@class='cart-item-counter__button is-plus']";
     private final String ITEM_DECREASE_QUANTITY_BUTTON = "//div[@class='cart-item-counter__button is-minus']";
@@ -52,9 +51,9 @@ public class CartPage {
     }
 
     public CartPage clickAddToCart() {
-        WebDriverWait wait = new WebDriverWait(WebDriver.getDriver(), Duration.ofSeconds(15)); // Увеличил до 15 секунд на всякий случай
+        WebDriverWait wait = new WebDriverWait(WebDriver.getDriver(), Duration.ofSeconds(10));
         wait.until(ExpectedConditions.elementToBeClickable(By.id(ADD_TO_CART_BUTTON)));
-
+        WebDriver.scrollToElement(ADD_TO_CART_BUTTON);
         WebDriver.clickElement(ADD_TO_CART_BUTTON);
         return this;
     }

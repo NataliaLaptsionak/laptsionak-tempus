@@ -17,7 +17,6 @@ public class RegistrationForm {
     private final String EMPTY_FULL_NAME_ERROR = "//label[@class=\"form-input is-required is-error\"]//span[@class=\"form-input__error-message\"]";
     private final String EMPTY_EMAIL_ERROR = "//label[@class=\"form-input is-required is-email is-error\"]//span[@class=\"form-input__error-message\"]";
     private final String INCORRECT_EMAIL_ERROR = "//span[@class=\"form-input__error-message\"]";
-
     private final String EMPTY_PHONE_ERROR = "//label[@class=\"form-input is-required is-phone phone-input is-error\"]//span[@class=\"form-input__error-message\"]";
     private final String EMPTY_PASSWORD_ERROR = "//label[@class=\"form-input is-required is-password is-error\"]//span[@class=\"form-input__error-message\"]";
     private final String REGISTRATION_REPEAT_PASSWORD_ERROR = "//label[@class=\"form-input is-required is-confirm-password is-error\"]//span[@class=\"form-input__error-message\"]";
@@ -30,8 +29,6 @@ public class RegistrationForm {
     private final String AGREEMENT_CHECKBOX = "//span[@class=\"checkbox-input__check\"]";
     private final String AGREEMENT_CHECKBOX_ERROR = "//div[@class=\"form__agreement\"]//span[@class=\"form-input__error-message\"]";
     private final String AGREEMENT_CHECKBOX_TEXT = "//form[@class=\"form registration__form js-validate-form\"]//span[@class=\"agreement__text\"]";
-    private final String LOGIN_FORM_TITLE = "//button[contains(@class, 'tabs_btn-action') and text()='Вход']";
-
 
     public RegistrationForm() {
     }
@@ -42,14 +39,6 @@ public class RegistrationForm {
 
     public void clickTabRegistration() {
         WebDriver.clickElement(TAB_REGISTRATION);
-    }
-
-    public void clickLoginFormTitle() {
-        WebDriver.clickElement(LOGIN_FORM_TITLE);
-    }
-
-    public String getLoginFormTitleText() {
-        return WebDriver.getTextFromElement(LOGIN_FORM_TITLE);
     }
 
     public String getButtonRegistrationText() {
@@ -148,7 +137,6 @@ public class RegistrationForm {
         return (String) js.executeScript("return arguments[0].validationMessage;", emailField);
     }
 
-
     public void fillRegistrationForm(String fullName, String email, String phone, String password, String repeatPassword) {
         sendKeysFullName(fullName);
         sendKeysEmail(email);
@@ -161,5 +149,4 @@ public class RegistrationForm {
 
     public void clickAgreementCheckBox() {
         WebDriver.clickElement(AGREEMENT_CHECKBOX);     }
-
 }

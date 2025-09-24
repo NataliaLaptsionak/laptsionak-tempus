@@ -5,7 +5,6 @@ import by.tempus.ui.pages.homePage.HomePage;
 import by.tempus.ui.pages.login.LoginExpectedMessages;
 import by.tempus.ui.pages.login.LoginForm;
 import by.tempus.ui.pages.registration.RegistrationExpectedMessages;
-import by.tempus.ui.pages.registration.RegistrationForm;
 import by.tempus.ui.pages.restorePassword.RestorePasswordExpectedMessages;
 import by.tempus.ui.pages.restorePassword.RestorePasswordForm;
 import org.junit.jupiter.api.Assertions;
@@ -66,13 +65,57 @@ public class RestorePasswordTest extends BaseTest {
         LoginForm loginForm = new LoginForm();
         loginForm.clickLinkRestorePassword();
         RestorePasswordForm restorePasswordForm = new RestorePasswordForm();
-
         String invalidEmail = DataGenerator.generateInvalidEmailMissingAt();
         restorePasswordForm.sendKeysEmail(invalidEmail);
         restorePasswordForm.clickButtonSubmitRestore();
 
         String expected = String.format(RestorePasswordExpectedMessages.INVALID_EMAIL_FORMAT_ERROR_MISSING_AT, invalidEmail);
         Assertions.assertEquals(expected, restorePasswordForm.getEmailValidationMessage());
+    }
+
+    @Test
+    @DisplayName("Verify message for incorrect email format (missing part before '@')")
+    public void invalidEmailFormatMissingPartBeforeAtTest() {
+        LoginForm loginForm = new LoginForm();
+        loginForm.clickLinkRestorePassword();
+        RestorePasswordForm restorePasswordForm = new RestorePasswordForm();
+
+        String invalidEmail = DataGenerator.generateInvalidEmailMissingPartBeforeAt();
+        restorePasswordForm.sendKeysEmail(invalidEmail);
+        restorePasswordForm.clickButtonSubmitRestore();
+
+        String expected = String.format(RestorePasswordExpectedMessages.INVALID_EMAIL_FORMAT_ERROR_MISSING_PART_BEFORE_AT, invalidEmail);
+        Assertions.assertEquals(expected, restorePasswordForm.getEmailValidationMessage());
+    }
+
+    @Test
+    @DisplayName("Verify message for incorrect email format (missing part after '@')")
+    public void invalidEmailFormatMissingPartAfterAtTest() {
+        LoginForm loginForm = new LoginForm();
+        loginForm.clickLinkRestorePassword();
+        RestorePasswordForm restorePasswordForm = new RestorePasswordForm();
+
+        String invalidEmail = DataGenerator.generateInvalidEmailMissingPartAfterAt();
+        restorePasswordForm.sendKeysEmail(invalidEmail);
+        restorePasswordForm.clickButtonSubmitRestore();
+
+        String expected = String.format(RestorePasswordExpectedMessages.INVALID_EMAIL_FORMAT_ERROR_MISSING_PART_AFTER_AT, invalidEmail);
+        Assertions.assertEquals(expected, restorePasswordForm.getEmailValidationMessage());
+    }
+
+    @Test
+    @DisplayName("Verify message for incorrect email address (e.g., '1@rtty')")
+    public void incorrectEmailAddressTest() {
+        LoginForm loginForm = new LoginForm();
+        loginForm.clickLinkRestorePassword();
+        RestorePasswordForm restorePasswordForm = new RestorePasswordForm();
+
+        String invalidEmail = DataGenerator.generateIncorrectEmail();
+        restorePasswordForm.sendKeysEmail(invalidEmail);
+        restorePasswordForm.clickButtonSubmitRestore();
+
+        String expected = String.format(RestorePasswordExpectedMessages.INCORRECT_EMAIL_ADDRESS_ERROR,invalidEmail);
+        Assertions.assertEquals(expected, loginForm.getIncorrectEmailError());
     }
 
     @Test

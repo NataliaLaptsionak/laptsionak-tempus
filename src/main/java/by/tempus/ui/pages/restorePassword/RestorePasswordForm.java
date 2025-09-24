@@ -3,22 +3,19 @@ package by.tempus.ui.pages.restorePassword;
 import by.tempus.webDriver.WebDriver;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class RestorePasswordForm {
     private final String LINK_RESTORE_PASSWORD = "//button[@class='form__action j-tabBtnHandle']";
     private final String RESTORE_PASSWORD_FORM_TEXT = "//div[@class='form__recover' and normalize-space()='Для восстановления пароля, введите Email']";
     private final String BUTTON_SUBMIT_RESTORE = "//form[@class=\"form restore__form js-validate-form\"]//button[@class=\"button is-primary\"]";
     private final String RESTORE_PASSWORD_FORM_EMAIL_ERROR = "//span[@class=\"form-input__error-message\"]";
-    private final String BUTTON_LOGIN = "//button[@class='button is-primary' and normalize-space()='Войти в аккаунт']";
     private final String LOGIN_FORM_TITLE = "//li[contains(@class, 'is-active')]//button[text()='Вход']";
     private final String TAB_REGISTRATION = "//li[contains(@class, '')]//button[text()='Регистрация']";;
-    private final String LABEL_EMAIL_FIELD_TEXT = "//form[@class=\"form restore__form js-validate-form\"]//label[@class=\"form-input is-required is-email\"]";
-    private final String INPUT_RESTORE_PASSWORD_EMAIL = "//input[@type='email']";
+    private final String LABEL_EMAIL_FIELD = "//form[@class=\"form restore__form js-validate-form\"]//label[@class=\"form-input is-required is-email\"]";
+    private final String INPUT_RESTORE_PASSWORD_EMAIL = "//input[normalize-space(@type) = 'email']";
     private final String RESTORE_PASSWORD_UNREGISTERED_EMAIL_ERROR = "//div[@class='success-popup__text']";
 
-    public void clickButtonLogin() {
-        WebDriver.clickElement(BUTTON_LOGIN);
-    }
 
     public String getRestorePasswordFormText() {
         return WebDriver.getTextFromElement(RESTORE_PASSWORD_FORM_TEXT);
@@ -29,12 +26,12 @@ public class RestorePasswordForm {
     }
 
     public void clickButtonSubmitRestore() {
+        WebDriver.wait.until(ExpectedConditions.elementToBeClickable(WebDriver.findElement(INPUT_RESTORE_PASSWORD_EMAIL)));
         WebDriver.clickElement(BUTTON_SUBMIT_RESTORE);
     }
 
-
     public String getLabelRestorePassword_EmailText() {
-        return WebDriver.getTextFromElement(LABEL_EMAIL_FIELD_TEXT);
+        return WebDriver.getTextFromElement(LABEL_EMAIL_FIELD);
     }
 
     public String getLoginFormTitleText() {
@@ -58,7 +55,6 @@ public class RestorePasswordForm {
     public void sendKeysEmail(String email) {
         WebDriver.sendkeysToElement(INPUT_RESTORE_PASSWORD_EMAIL, email);
     }
-
 
     public void clickLinkRestorePassword() {
         WebDriver.clickElement(LINK_RESTORE_PASSWORD);
