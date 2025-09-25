@@ -10,6 +10,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static java.lang.Thread.sleep;
+
 public class CartTest extends BaseTest {
     private CartPage cartPage;
 
@@ -54,11 +56,11 @@ public class CartTest extends BaseTest {
         Assertions.assertEquals("1", cartPage.getItemQuantity());
 
         cartPage.increaseQuantity();
-        Thread.sleep(1000);
+        sleep(1000);
         Assertions.assertEquals("2", cartPage.getItemQuantity());
 
         cartPage.decreaseQuantity();
-        Thread.sleep(1000);
+        sleep(1000);
         Assertions.assertEquals("1", cartPage.getItemQuantity());
     }
 

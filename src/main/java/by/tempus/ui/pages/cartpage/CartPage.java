@@ -2,9 +2,13 @@ package by.tempus.ui.pages.cartpage;
 
 import by.tempus.webDriver.WebDriver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
+
+import static java.lang.Thread.sleep;
 
 public class CartPage {
 
@@ -14,7 +18,7 @@ public class CartPage {
     private final String PRODUCT_MICHAEL_KORS_MK7337 = "//a[@title='Michael Kors  Lennox MK7337']";
     private final String PRODUCT_MICHAEL_KORS_MK7325 = "//a[@title='Michael Kors Runway MK7325']";
 
-    private final String ADD_TO_CART_BUTTON = "(//div[@class=\"button is-primary is-cart \" and contains(., 'Добавить в корзину')])[3]";
+    private final String ADD_TO_CART_BUTTON = "//div[@class=\"product-page-main\"]//div[@class=\"button is-primary is-cart \"]";
     private final String CLEAR_CART_BUTTON = "//button[@class='clear']";
     private final String ITEM_INCREASE_QUANTITY_BUTTON = "//div[@class='cart-item-counter__button is-plus']";
     private final String ITEM_DECREASE_QUANTITY_BUTTON = "//div[@class='cart-item-counter__button is-minus']";
@@ -52,8 +56,9 @@ public class CartPage {
 
     public CartPage clickAddToCart() {
         WebDriverWait wait = new WebDriverWait(WebDriver.getDriver(), Duration.ofSeconds(15));
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(ADD_TO_CART_BUTTON)));
-        WebDriver.clickElement(ADD_TO_CART_BUTTON);
+        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(ADD_TO_CART_BUTTON)));
+        JavascriptExecutor js = (JavascriptExecutor) WebDriver.getDriver();
+        js.executeScript("arguments[0].click();", element);
         return this;
     }
 
@@ -63,12 +68,18 @@ public class CartPage {
     }
 
     public CartPage increaseQuantity() {
-        WebDriver.clickElement(ITEM_INCREASE_QUANTITY_BUTTON);
+        WebDriverWait wait = new WebDriverWait(WebDriver.getDriver(), Duration.ofSeconds(15));
+        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(ITEM_INCREASE_QUANTITY_BUTTON)));
+        JavascriptExecutor js = (JavascriptExecutor) WebDriver.getDriver();
+        js.executeScript("arguments[0].click();", element);
         return this;
     }
 
     public CartPage decreaseQuantity() {
-        WebDriver.clickElement(ITEM_DECREASE_QUANTITY_BUTTON);
+        WebDriverWait wait = new WebDriverWait(WebDriver.getDriver(), Duration.ofSeconds(15));
+        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(ITEM_DECREASE_QUANTITY_BUTTON)));
+        JavascriptExecutor js = (JavascriptExecutor) WebDriver.getDriver();
+        js.executeScript("arguments[0].click();", element);
         return this;
     }
 
@@ -85,7 +96,10 @@ public class CartPage {
     }
 
     public CartPage selectCityMinsk() {
-        WebDriver.clickElement(CITY_MINSK_TAG);
+        WebDriverWait wait = new WebDriverWait(WebDriver.getDriver(), Duration.ofSeconds(15));
+        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(CITY_MINSK_TAG)));
+        JavascriptExecutor js = (JavascriptExecutor) WebDriver.getDriver();
+        js.executeScript("arguments[0].click();", element);
         return this;
     }
 
